@@ -1,0 +1,97 @@
+<div class="clr-row clr-justify-content-center">
+  <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+      <div class="card">
+        <form clrForm *ngIf="proveedor" [formGroup]="proveedorForm" novalidate  (ngSubmit)="onSubmit()">  
+          <div class="card-header">
+                <div *ngIf="proveedor.id; then editProveedorBlock else newProveedorBlock"></div>
+                <ng-template #editProveedorBlock>
+                    Editar Proveedor
+                </ng-template>
+                <ng-template #newProveedorBlock>
+                    Nuevo Proveedor
+                </ng-template>
+          </div>
+          <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+              
+              <div class="card-text">
+
+                    <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                        <label class="clr-col-12">Nombre</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombre" 
+                            formControlName="nombre"  
+                            />
+                        <clr-control-error>Introduzca el Nombre</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Nombre 2 D&iacute;gitos</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombre2Digitos" 
+                            formControlName="nombre2Digitos"  
+                            />
+                        <clr-control-error>Introduzca Nombre 2 Digitos</clr-control-error>
+                    </clr-input-container>
+  
+                    <clr-input-container>
+                        <label class="clr-col-12">Tel&eacute;fono</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="telefono" 
+                            formControlName="telefono"  
+                            />
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">EMail</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="email" 
+                            formControlName="email"  
+                            />
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Persona Responsable</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="personaResponsable" 
+                            formControlName="personaResponsable"  
+                            />
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Persona Contacto</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="personaContacto" 
+                            formControlName="personaContacto"  
+                            />
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Direcci&oacute;n</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="direccion" 
+                            formControlName="direccion"  
+                            />
+                    </clr-input-container>
+  
+                    <clr-input-container>
+                        <label class="clr-col-12">Localidad</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="localidad" 
+                            formControlName="localidad"  
+                            />
+                    </clr-input-container>
+
+                    
+  
+
+              </div>
+          </div>
+          <div class="card-footer">
+                <button [disabled]="proveedorForm.invalid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+         </div>
+        </form>  
+      </div>
+  </div>
+</div>
+

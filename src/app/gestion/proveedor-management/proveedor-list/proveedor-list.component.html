@@ -1,0 +1,95 @@
+
+<div *ngIf="emptyProveedores; then thenProveedorBlock else elseProveedorBlock"></div>
+<ng-template #thenProveedorBlock>
+
+    <div class="alert alert-info" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    No hay Proveedores creados.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
+
+<ng-template #elseProveedorBlock>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-12">
+    
+        <clr-datagrid>
+            <clr-dg-column>XX</clr-dg-column>
+            <clr-dg-column>Nombre</clr-dg-column>
+            <clr-dg-column>Localidad</clr-dg-column>
+            <clr-dg-column>Telefono</clr-dg-column>
+            <clr-dg-column>EMail</clr-dg-column>
+            <clr-dg-column>Responsable</clr-dg-column>
+            <clr-dg-column>Persona Contacto</clr-dg-column>
+            <clr-dg-column>Direccion</clr-dg-column>
+            <clr-dg-column></clr-dg-column>
+            
+            
+            <clr-dg-row *clrDgItems="let proveedor of proveedorList">
+                <clr-dg-cell>
+                    <strong>{{ proveedor.nombre2Digitos }}</strong>
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.nombre }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.localidad }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.telefono }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.email }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.personaResponsable }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.personaContacto }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ proveedor.direccion }}
+                </clr-dg-cell>
+            
+                
+                <clr-dg-cell>
+                    <button class="btn btn-icon btn-sm" (click)="onEditProveedor()" routerLink="/gestion/proveedor/{{proveedor.id}}/edit">
+                        <clr-icon shape="note"></clr-icon>
+                    </button>
+                    <button class="btn btn-icon btn-sm">
+                        <clr-icon shape="trash" (click)="onDeleteProveedor(proveedor)"></clr-icon>
+                    </button>
+                </clr-dg-cell>
+            
+            </clr-dg-row>
+        
+            <clr-dg-footer>{{proveedorList.length}} Proveedores</clr-dg-footer>
+        </clr-datagrid>
+
+
+    </div>
+  </div>
+</ng-template>  
+
+<clr-modal [(clrModalOpen)]="openedProveedorDialog" [clrModalSize]="'sm'">
+    <h3 class="modal-title">Borrar Proveedor</h3>
+    <div class="modal-body">
+        <p>¿ Borrar <strong>{{ selectedProveedor?.nombre }}</strong> ?</p>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedProveedorDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>
+

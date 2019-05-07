@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "viveroWorks02": {
+    "viveroWorks04": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/viveroWorks02",
+            "outputPath": "dist/viveroWorks04",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -50,18 +55,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "viveroWorks02:build"
+            "browserTarget": "viveroWorks04:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "viveroWorks02:build:production"
+              "browserTarget": "viveroWorks04:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "viveroWorks02:build"
+            "browserTarget": "viveroWorks04:build"
           }
         },
         "test": {
@@ -95,7 +100,7 @@
         }
       }
     },
-    "viveroWorks02-e2e": {
+    "viveroWorks04-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "viveroWorks02:serve"
+            "devServerTarget": "viveroWorks04:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "viveroWorks02:serve:production"
+              "devServerTarget": "viveroWorks04:serve:production"
             }
           }
         },
@@ -123,5 +128,5 @@
       }
     }
   },
-  "defaultProject": "viveroWorks02"
+  "defaultProject": "viveroWorks04"
 }

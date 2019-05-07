@@ -1,0 +1,70 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100%;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.my-list-inline {
+    padding-left: 0;
+    list-style: none;
+}
+.my-list-inline-item{
+    display: inline-block;
+}
+
+.my-list-inline-item:not(:last-child) {
+    margin-right: .5rem;
+}
+
+.modal-dialog .modal-content {
+    padding: .5rem !important;
+}
+
+.modal-header .modal-title {
+    font-size: 0.7rem;
+}
+
+@media screen and (max-width: 576px){
+    .modal-content {
+        padding: .25rem 0 .25rem .25rem !important;
+    }
+    
+    .modal-header .modal-title {
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .clr-row .mmr-0 {
+        margin-left: .3rem;
+        margin-right: 0;
+    }
+    
+    .card-block , .card-header {
+        padding: .5rem;
+    }  
+    
+    .card-header{
+        font-size: .6rem;
+        font-weight: 400;
+    } 
+    .modal-title{
+        font-size: .6rem;
+        font-weight: 400;
+        font-weight: bold;
+    } 
+    .clr-form-control {
+        margin-top: .3rem;
+    }    
+}

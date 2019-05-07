@@ -1,0 +1,185 @@
+
+<div class="clr-row clr-justify-content-center">
+  <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+      <div class="card">
+        <form clrForm *ngIf="especie" [formGroup]="especieForm" novalidate  (ngSubmit)="onSubmit()">
+
+            <div class="card-header">
+                <div *ngIf="especie.id; then editEspecBlock else newEspecBlock"></div>
+                <ng-template #editEspecBlock>
+                    Editar Especie
+                </ng-template>
+                <ng-template #newEspecBlock>
+                    Nueva Especie
+                </ng-template>
+            </div>
+            <div class="card-img" *ngIf="especie.id">
+                <img src="{{ especie.imagen }}" alt="" class="sm-height">
+            </div>
+
+            <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+                
+
+                <div class="card-text">
+
+                    <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                        <label class="clr-col-12">Nombre</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombre" 
+                            formControlName="nombre"  
+                            />
+                        <clr-control-error>Introduzca el Nombre</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Nombre Cientifico</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombreCientifico" 
+                            formControlName="nombreCientifico" 
+                            />
+                        <clr-control-error>Introduzca el Nombre Cientifico</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Nombre Com&uacute;n</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombreComun" 
+                            formControlName="nombreComun" 
+                            />
+                        <clr-control-error>Introduzca el nombre com&uacute;n</clr-control-error>
+                    </clr-input-container>
+
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Familia</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="familia" 
+                            formControlName="familia" 
+                            />
+                        <clr-control-error>Introduzca la familia</clr-control-error>
+                    </clr-input-container>
+
+                    <div class="clr-form-control clr-row">
+                        <div class="clr-control-container right">
+                            
+                            <button type="button" class="btn btn-primary" (click)="addVariedad()">
+                                <clr-icon shape="plus"></clr-icon>
+                                Agregar Variedad
+                            </button>
+                            
+                        </div>    
+                    </div>
+
+                    
+                    <div formArrayName="variedad">
+                        
+                        <div class="clr-form-control clr-row" 
+                            *ngFor="let item of variedad.controls; let variedadIndex=index" [formGroupName]="variedadIndex">
+                                <label for="example" class="clr-control-label clr-col-12">Variedad</label>
+                                <div class="clr-control-container clr-col-10">
+                                    <div class="clr-input-wrapper">
+                                        <input type="text" id="example" class="clr-input" formControlName="nombre">
+                                        <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+                                        
+                                    </div>
+                                    <span class="clr-subtext">Nombre de Variedad</span>
+                                </div>
+                                <div class="clr-control-container clr-col-2">
+                                    <div class="clr-input-wrapper">
+                                        <button type="button"  class="btn btn-icon btn-outline-danger" (click)="deleteVariedad(variedadIndex)">
+                                            <clr-icon shape="trash"></clr-icon>
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+                                <!--Chosen name: {{ especieForm.controls.variedad.controls[variedadIndex].controls.name.value }}-->
+                        </div>
+                        
+
+                    </div>
+
+                    
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Origen</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="origen" 
+                            formControlName="origen" 
+                            />
+                        <clr-control-error>Introduzca el origen</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-textarea-container>
+                        <label class="clr-col-12">Caracteristicas</label>
+                        <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                            name="caracteristicas" 
+                            formControlName="caracteristicas"></textarea>
+                    </clr-textarea-container>
+
+                    <!--
+                    <clr-input-container>
+                    -->
+
+                        <!--
+                        <label class="btn btn-link clr-col-12">
+                            <input type="file" clrFile  
+                                   (change)="null"
+                                   placeholder="Upload file"  
+                                   accept="*" 
+                                   name="imagen" 
+                                   formControlName="imagen">
+                            
+                        </label>
+                        -->
+
+                        <!--
+                        <label class="btn btn-link clr-col-12">
+                            <input type="file" clrFile 
+                                   (change)="null"
+                                   placeholder="Upload file"
+                                   class="button-input"
+                                   accept="*">
+                            Attach Files
+                        </label>
+                        -->
+                    <!--
+                    </clr-input-container>
+                    -->
+                    
+                    <clr-input-container>
+                        <label class="clr-col-12">Imagen</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="imagen" 
+                            formControlName="imagen" 
+                            />
+                        <clr-control-error>Introduzca la imagen</clr-control-error>
+                    </clr-input-container>
+                    
+
+                    <!--
+                    <div class="clr-form-control">
+                        <label for="example" class="clr-control-label clr-col-12">File</label>
+                        <div class="clr-control-container clr-col-12">
+                          <div class="clr-input-wrapper">
+                            <input type="file" id="importFile" class="clr-input">
+                          </div>
+                        </div>
+                    </div>
+                    -->
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button [disabled]="especieForm.invalid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+            </div>
+
+        </form>
+          
+      </div>
+  </div>
+</div>
+
+
+
+

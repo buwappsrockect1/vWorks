@@ -1,0 +1,13 @@
+<h1>File upload</h1>
+<input type="file" (change)="onFileSelected($event)">
+<button type="button" (click)="onUpload()">Upload</button>
+
+<br>
+<br>
+
+<!-- action="/uploadfile" -->
+<!--  SINGLE FILE -->
+<form  action="http://localhost:3051/lotes/3/imagen-upload" enctype="multipart/form-data" method="POST"> 
+  <input type="file" accept="image/*"/>
+  <input type="submit" value="Upload a file"/>
+</form>

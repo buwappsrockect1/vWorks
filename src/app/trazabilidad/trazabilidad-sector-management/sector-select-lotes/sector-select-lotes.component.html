@@ -1,0 +1,94 @@
+<div *ngIf="emptyLotes; then thenEmptyLoteSectorBlock else elseEmptyLoteSectorBlock"></div>
+<ng-template #thenEmptyLoteSectorBlock>
+
+  <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        No hay lotes del sector {{ selectedSector.nombre }}.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+</ng-template>
+
+<ng-template #elseEmptyLoteSectorBlock>
+    <div class="clr-row">
+        
+        <div class="clr-col-12">
+            
+            <clr-datagrid>
+                <clr-dg-column>Ver</clr-dg-column>
+                <clr-dg-column>Nombre</clr-dg-column>
+                <clr-dg-column>Especie</clr-dg-column>
+                <clr-dg-column>Variedad</clr-dg-column>
+                <clr-dg-column>Unidades</clr-dg-column>
+                <clr-dg-column>Stock Mín.</clr-dg-column>
+                <clr-dg-column>Proveedor</clr-dg-column>
+                <clr-dg-column>Cod. Proveedor</clr-dg-column>
+                <clr-dg-column>QR Trazabilidad</clr-dg-column>
+                <clr-dg-column>Sector</clr-dg-column>
+                <clr-dg-column>Editar</clr-dg-column>
+                <clr-dg-column>Borrar</clr-dg-column>
+                
+
+                <clr-dg-row *clrDgItems="let lote of loteList">
+                    <clr-dg-cell>
+                        <button class="btn btn-primary btn-icon btn-sm"  
+                            (click)="onRouterLinkClick(lote)"  
+                            [routerLink]="[lote.id, 'lote-info']">
+                            <clr-icon shape="search"></clr-icon>
+                        </button>
+                    </clr-dg-cell>
+                    <clr-dg-cell>{{lote.nombre}}</clr-dg-cell>
+                    <clr-dg-cell>
+                        {{lote.especie.nombre}}
+                        <br>
+                        {{lote.especie.nombreCientifico}}
+                    </clr-dg-cell>
+                    <clr-dg-cell>{{lote.variedad.nombre }}</clr-dg-cell>
+                    <clr-dg-cell>{{lote.cantidad}}</clr-dg-cell>
+                    <clr-dg-cell>{{lote.stockMinimo}}</clr-dg-cell>
+                    <clr-dg-cell>({{lote.proveedorOrigen.nombre2Digitos}}) - {{ lote.proveedorOrigen.nombre }}</clr-dg-cell>
+                    <clr-dg-cell>{{lote.codProveedor}}</clr-dg-cell>
+                    <clr-dg-cell>{{lote.qrTrazabilidad}}</clr-dg-cell>
+                    <clr-dg-cell>
+                        {{lote.sector.nombre}}
+                    </clr-dg-cell>
+                    <clr-dg-cell>
+                        <button class="btn btn-icon btn-sm" (click)="onEditLote()" routerLink="/gestion/lote/{{lote.id}}/edit">
+                            <clr-icon shape="note"></clr-icon>
+                        </button>
+                    </clr-dg-cell>
+                    <clr-dg-cell>
+                        <button class="btn btn-icon btn-sm">
+                            <clr-icon shape="trash" (click)="onDeleteLote(lote)"></clr-icon>
+                        </button>
+                    </clr-dg-cell>
+                    
+
+                </clr-dg-row>
+            
+                <clr-dg-footer>
+                <strong>{{loteList.length}} lotes</strong>
+                </clr-dg-footer>
+            </clr-datagrid>
+
+
+        </div>
+
+    </div>
+</ng-template>
+
+<!-- Delete Lote Modal Dialog -->
+<clr-modal [(clrModalOpen)]="openedDeleteLoteDialog" [clrModalSize]="'sm'" *ngIf="selectedLote">
+    <h3 class="modal-title">Borrar Lote</h3>
+    <div class="modal-body">
+        <p>¿ Borrar lote ?</p>
+        <p><strong>{{ selectedLote?.nombre }}</strong></p>
+    
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedDeleteLoteDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>

@@ -1,0 +1,5 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper ,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100%;
+}

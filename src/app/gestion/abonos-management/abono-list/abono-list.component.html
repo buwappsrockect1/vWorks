@@ -1,0 +1,74 @@
+
+<div *ngIf="emptyAbonos; then thenAbonoBlock else elseAbonoBlock"></div>
+<ng-template #thenAbonoBlock>
+
+    <div class="alert alert-info" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    No hay Abonos creados.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
+
+<ng-template #elseAbonoBlock>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-12 clr-col-md-9 clr-col-lg-6 clr-col-xl-6">
+
+        <clr-datagrid>
+            <clr-dg-column>Nombre</clr-dg-column>
+            <clr-dg-column>S&iacute;mbolo</clr-dg-column>
+            <clr-dg-column>Composici&oacute;n</clr-dg-column>
+            <clr-dg-column>Otros</clr-dg-column>
+            <clr-dg-column></clr-dg-column>
+        
+            <clr-dg-row *clrDgItems="let abono of abonoList">
+                <clr-dg-cell >
+                    <strong>{{ abono.nombre }}</strong>
+                </clr-dg-cell>
+                <clr-dg-cell >
+                    <strong>({{ abono.simbolo }})</strong>
+                </clr-dg-cell>
+                <clr-dg-cell >
+                    {{ abono.composicion }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    {{ abono.otros }}
+                </clr-dg-cell>
+                <clr-dg-cell>
+                    <button class="btn btn-icon btn-sm" (click)="onEditAbono()" routerLink="/gestion/abono/{{abono.id}}/edit">
+                        <clr-icon shape="note"></clr-icon>
+                    </button>
+                    <button class="btn btn-icon btn-sm">
+                        <clr-icon shape="trash" (click)="onDeleteAbono(abono)"></clr-icon>
+                    </button>
+                </clr-dg-cell>
+            </clr-dg-row>
+        
+            <clr-dg-footer>{{abonoList.length}} Abonos</clr-dg-footer>
+        </clr-datagrid>
+
+
+    </div>
+  </div>
+</ng-template>  
+
+<clr-modal [(clrModalOpen)]="openedAbonoDialog" [clrModalSize]="'sm'">
+    <h3 class="modal-title">Borrar Abono</h3>
+    <div class="modal-body">
+        <p>¿ Borrar <strong>{{ selectedAbono?.nombre }} ({{ selectedAbono?.simbolo }})</strong> ?</p>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedAbonoDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>

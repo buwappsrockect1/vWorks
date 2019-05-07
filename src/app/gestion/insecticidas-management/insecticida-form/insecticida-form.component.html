@@ -1,0 +1,106 @@
+<div class="clr-row clr-justify-content-center">
+    <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+        <div class="card">
+          <form clrForm *ngIf="insecticida" [formGroup]="insecticidaForm" novalidate  (ngSubmit)="onSubmit()">  
+            <div class="card-header">
+                  <div *ngIf="insecticida.id; then editInsecticidaBlock else newInsecticidaBlock"></div>
+                  <ng-template #editInsecticidaBlock>
+                      Editar Insecticida
+                  </ng-template>
+                  <ng-template #newInsecticidaBlock>
+                      Nuevo Insecticida
+                  </ng-template>
+            </div>
+            <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+                
+                <div class="card-text">
+  
+                      <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                          <label class="clr-col-12">Nombre</label>
+                          <input class="clr-col-12" clrInput type="text" 
+                              name="nombre" 
+                              formControlName="nombre"  
+                              />
+                          <clr-control-error>Introduzca el Nombre</clr-control-error>
+                      </clr-input-container>
+
+                      <div class="clr-form-control clr-row">
+                        <div class="clr-control-container right">
+                            
+                            <button type="button" class="btn btn-primary" (click)="addPrincActivo()">
+                                <clr-icon shape="plus"></clr-icon>
+                                Agregar Princ. Activo
+                            </button>
+                            
+                        </div>    
+                      </div>
+    
+  
+                      <div formArrayName="princActivo">
+                        
+                            <div class="clr-form-control clr-row" 
+                                *ngFor="let item of princActivo.controls; let princActivoIndex=index" [formGroupName]="princActivoIndex">
+                                    <label for="example" class="clr-control-label clr-col-12 clr-col-md-12 clr-col-xl-12">Principio Activo</label>
+                                    <div class="clr-control-container clr-col-10">
+                                        <div class="clr-input-wrapper">
+                                            <input type="text"  class="clr-input" formControlName="nombre">
+                                            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="clr-control-container clr-col-2">
+                                        <div class="clr-input-wrapper">
+                                            <button type="button"  class="btn btn-icon btn-outline-danger" (click)="deletePrincActivo(princActivoIndex)">
+                                                <clr-icon shape="trash"></clr-icon>
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                    <!--Chosen name: {{ insecticidaForm.controls.princActivo.controls[princActivoIndex].controls.name.value }}-->
+                            
+                            </div>
+
+                            <div class="clr-control-container clr-col-12 mt-1" *ngIf="bShowDeletePActivoAlert">
+                                <div class="clr-input-wrapper">
+                                    <clr-alert #clrAlertDelete [clrAlertType]="'danger'" 
+                                              [clrAlertSizeSmall]="true" 
+                                              [clrAlertClosable]="false">
+                                        <clr-alert-item>
+                                            <span class="alert-text">
+                                                Se necesita al menos un Principio Activo.
+                                            </span>
+                                        </clr-alert-item>
+                                    </clr-alert>
+                                </div>    
+                            </div>
+    
+                        </div>
+    
+                      <clr-input-container>
+                        <label class="clr-col-12">Plazo de Seguridad (dias)*</label>
+                        <input class="clr-col-12" clrInput type="number" 
+                            name="plazoSeguridad" 
+                            formControlName="plazoSeguridad" 
+                            />
+                      </clr-input-container>
+
+                      <clr-textarea-container>
+                        <label class="clr-col-12">Contraindicaciones</label>
+                        <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                            name="contraindicaciones" 
+                            formControlName="contraindicaciones"></textarea>
+                      </clr-textarea-container>
+    
+  
+                </div>
+            </div>
+            <div class="card-footer">
+                  <button [disabled]="insecticidaForm.invalid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                  <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+           </div>
+          </form>  
+        </div>
+    </div>
+  </div>
+
+

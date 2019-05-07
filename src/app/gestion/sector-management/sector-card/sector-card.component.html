@@ -1,0 +1,51 @@
+
+<div *ngIf="emptySectors; then thenSectorCBlock else elseSectorCBlock"></div>
+<ng-template #thenSectorCBlock>
+
+    <div class="alert alert-info" role="alert">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        No hay Sectores creados.
+                    </span>
+                </div>
+            </div>
+    </div>
+</ng-template>
+
+<ng-template #elseSectorCBlock>
+
+    <div class="clr-row">
+        
+        <div class="clr-col-lg-4 clr-col-md-4 clr-col-12" 
+          *ngFor="let sector of sectorList">
+            <div class="card">
+                <div class="card-header">
+                    {{ sector.nombre }}
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-sm btn-link" (click)="onEditSector()" routerLink="/gestion/sector/{{sector.id}}/edit">EDITAR</button>
+                    <button class="btn btn-sm btn-link" (click)="onDeleteSector(sector)">ELIMINAR</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</ng-template>
+
+
+<clr-modal [(clrModalOpen)]="openedDialog" [clrModalSize]="'sm'">
+    <h3 class="modal-title">Borrar Sector</h3>
+    <div class="modal-body">
+        <p>¿ Borrar <strong>{{ selectedSector?.nombre }}</strong> ?</p>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>

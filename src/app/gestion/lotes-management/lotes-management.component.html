@@ -1,0 +1,22 @@
+<nav class="subnav color-header-3">
+    <div class="branding">
+        <span class="title"><strong>Lotes</strong></span>
+    </div>
+    
+    <div class="header-actions" *ngIf="getShowToolButtons()">
+        
+        <button class="btn btn-primary btn-sm mr-2" 
+            [routerLink]="['create']"
+            (click)="setShowToolButtons(false)">
+                <clr-icon shape="plus-circle"></clr-icon>
+                Insertar
+        </button> 
+  
+    </div>
+    
+  </nav>
+  
+  <div [ngStyle]="{'padding':'0', 'padding-top': '0.5rem'}">
+    
+    <router-outlet></router-outlet>
+  </div>

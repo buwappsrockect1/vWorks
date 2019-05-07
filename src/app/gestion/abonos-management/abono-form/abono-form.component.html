@@ -1,0 +1,63 @@
+<div class="clr-row clr-justify-content-center">
+  <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+      <div class="card">
+        <form clrForm *ngIf="abono" [formGroup]="abonoForm" novalidate  (ngSubmit)="onSubmit()">  
+          <div class="card-header">
+                <div *ngIf="abono.id; then editAbonoBlock else newAbonoBlock"></div>
+                <ng-template #editAbonoBlock>
+                    Editar Abono
+                </ng-template>
+                <ng-template #newAbonoBlock>
+                    Nuevo Abono
+                </ng-template>
+          </div>
+          <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+              
+              <div class="card-text">
+
+                    <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                        <label class="clr-col-12">Nombre</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="nombre" 
+                            formControlName="nombre"  
+                            />
+                        <clr-control-error>Introduzca el Nombre</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">S&iacute;mbolo</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="simbolo" 
+                            formControlName="simbolo" 
+                            />
+                        <clr-control-error>Introduzca el S&iacute;mbolo</clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Composici&oacute;n</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="composicion" 
+                            formControlName="composicion" 
+                            />
+                        
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label class="clr-col-12">Otros</label>
+                        <input class="clr-col-12" clrInput type="text" 
+                            name="otros" 
+                            formControlName="otros" 
+                            />
+                        
+                    </clr-input-container>
+
+              </div>
+          </div>
+          <div class="card-footer">
+                <button [disabled]="abonoForm.invalid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+         </div>
+        </form>  
+      </div>
+  </div>
+</div>

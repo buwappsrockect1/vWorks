@@ -1,0 +1,15 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100% ;
+}
+
+.clr-select-wrapper {
+    max-height: 1rem;
+    display: block;
+}
+
+.clr-multiselect-wrapper select, .clr-select-wrapper select {
+    max-height: 1rem;
+    display: block;
+}

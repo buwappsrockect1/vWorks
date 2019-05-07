@@ -1,0 +1,251 @@
+
+<div class="clr-row">
+  <div class="clr-col-12">
+
+    <ul class="my-list-inline mt-0">
+
+      <li class="my-list-inline-item">
+        <clr-dropdown [clrCloseMenuOnItemClick]="true">
+          <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+            Sector
+            <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen>
+
+            <button type="button" clrDropdownItem *ngFor="let sector of sectorList"
+              (click)="onDropdowItemClick(sector)">
+              {{ sector.nombre }}
+            </button>
+
+          </clr-dropdown-menu>
+        </clr-dropdown>
+      </li>
+
+      <li class="my-list-inline-item">
+        <h5 [ngStyle]="{'padding-top': '.2rem', 'margin-top': '0'}" *ngIf="sectorSelected">
+          {{ sectorSelected?.nombre }}
+        </h5>
+      </li>
+    </ul>
+
+
+  </div>
+
+</div>
+
+
+<div *ngIf="emptyLotes; then thenEmptyLoteBlock else elseEmptyLoteBlock"></div>
+<ng-template #thenEmptyLoteBlock>
+
+  <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        No hay lotes del sector {{ sectorSelected.nombre }}.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+</ng-template>
+
+<ng-template #elseEmptyLoteBlock>
+
+  <div class="clr-row">
+
+    <div class="clr-col-12">
+
+      <clr-datagrid>
+        <clr-dg-column>Ver</clr-dg-column>
+        <clr-dg-column>Lote</clr-dg-column>
+        <clr-dg-column>Especie</clr-dg-column>
+        <clr-dg-column>Variedad</clr-dg-column>
+        <clr-dg-column>Unidades</clr-dg-column>
+        <clr-dg-column>Stock Mín.</clr-dg-column>
+        <clr-dg-column>Proveedor</clr-dg-column>
+        <clr-dg-column>Cod. En Proveedor</clr-dg-column>
+        <clr-dg-column>QR Trazabilidad</clr-dg-column>
+        <clr-dg-column>Sector</clr-dg-column>
+        <clr-dg-column>Editar</clr-dg-column>
+        <clr-dg-column>Borrar</clr-dg-column>
+
+
+        <clr-dg-row *clrDgItems="let lote of loteList">
+          <clr-dg-cell>
+            <button class="btn btn-primary btn-icon btn-sm" (click)="onViewLoteDialog(lote)">
+              <clr-icon shape="search"></clr-icon>
+            </button>
+          </clr-dg-cell>
+          <clr-dg-cell>{{lote.nombre}}</clr-dg-cell>
+          <clr-dg-cell>
+            {{lote.especie.nombre}}
+            <br>
+            {{lote.especie.nombreCientifico}}
+          </clr-dg-cell>
+          <clr-dg-cell>{{lote.variedad.nombre }}</clr-dg-cell>
+          <clr-dg-cell>{{lote.cantidad}}</clr-dg-cell>
+          <clr-dg-cell>{{lote.stockMinimo}}</clr-dg-cell>
+          <clr-dg-cell>({{lote.proveedorOrigen.nombre2Digitos}}) - {{ lote.proveedorOrigen.nombre }}</clr-dg-cell>
+          <clr-dg-cell>{{lote.codProveedor}}</clr-dg-cell>
+          <clr-dg-cell>{{lote.qrTrazabilidad}}</clr-dg-cell>
+          <clr-dg-cell>{{lote.sector.nombre}}</clr-dg-cell>
+          <clr-dg-cell>
+            <button class="btn btn-icon btn-sm" (click)="onEditLote()" routerLink="/gestion/lote/{{lote.id}}/edit">
+              <clr-icon shape="note"></clr-icon>
+            </button>
+          </clr-dg-cell>
+          <clr-dg-cell>
+            <button class="btn btn-icon btn-sm">
+              <clr-icon shape="trash" (click)="onDeleteLote(lote)"></clr-icon>
+            </button>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+          <strong>{{loteList.length}} lotes</strong>
+        </clr-dg-footer>
+      </clr-datagrid>
+
+
+    </div>
+
+  </div>
+
+</ng-template>
+
+
+<!-- Delete Lote Modal Dialog -->
+<clr-modal [(clrModalOpen)]="openedDeleteLoteDialog" [clrModalSize]="'sm'">
+  <h3 class="modal-title">Borrar Lote</h3>
+  <div class="modal-body">
+    <p>¿ Borrar lote ?</p>
+    <p><strong>{{ loteSelected?.nombre }}</strong></p>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="openedDeleteLoteDialog = false">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+  </div>
+</clr-modal>
+
+
+<!-- View Lote Modal Dialog -->
+<clr-modal [(clrModalOpen)]="openedViewLoteDialog" *ngIf="loteSelected">
+  <h5 class="modal-title">Lote - {{ loteSelected.nombre }}</h5>
+  <div class="modal-body">
+
+    <div [ngStyle]="{'margin-top': '0'}">
+
+
+      <form clrForm #myLoteInfoForm="ngForm" novalidate>
+
+          <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+              
+              <div class="card-text">
+
+                <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Nombre</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="nombre" 
+                        [(ngModel)]="loteSelected.nombre" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Especie</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="especie" 
+                        [(ngModel)]="loteSelected.especie.nombre" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Variedad</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="variedad" 
+                        [(ngModel)]="loteSelected.variedad.nombre" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Cantidad</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                        name="cantidad"  
+                        [(ngModel)]="loteSelected.cantidad" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Stock M&iacute;nimo</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                        name="stockMinimo"   
+                        [(ngModel)]="loteSelected.stockMinimo" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Sector</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="sector"  
+                        [(ngModel)]="loteSelected.sector.nombre" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Fecha de Entrada</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="fechaEntrada"  
+                        [(ngModel)]="loteSelected.fechaEntrada" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Operario Encargado</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="operarioEncargado"  
+                        [(ngModel)]="loteSelected.operarioEncargado.nombreOperaciones" 
+                        readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Proveedor</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="proveedorOrigen" 
+                          [(ngModel)]="loteSelected.proveedorOrigen.nombre"    
+                          readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Codigo Proveedor</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="codProveedor" 
+                          [(ngModel)]="loteSelected.codProveedor"   
+                          readonly />
+                </clr-input-container>
+
+                <clr-input-container>
+                    <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Qr Trazabilidad</label>
+                    <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                        name="qrTrazabilidad"  
+                        [(ngModel)]="loteSelected.qrTrazabilidad" 
+                        readonly />
+                </clr-input-container>
+
+
+                <clr-textarea-container>
+                      <label class="clr-col-12">Notas</label>
+                      <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                          name="notas" 
+                          [(ngModel)]="loteSelected.notas"></textarea>
+                </clr-textarea-container>
+                      
+
+              </div>
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="openedViewLoteDialog = false">Cerrar</button>
+  </div>
+</clr-modal>

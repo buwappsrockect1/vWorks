@@ -1,0 +1,150 @@
+<div *ngIf="emptyRiegos; then thenEmptyRiegosBlock else elseEmptyRiegosBlock"></div>
+<ng-template #thenEmptyRiegosBlock>
+
+  <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        No hay riegos para el lote.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+</ng-template>
+
+<ng-template #elseEmptyRiegosBlock>
+    <div class="clr-row">
+        
+        <div class="clr-col-12">
+            
+            <clr-datagrid>
+                <clr-dg-column>Ver</clr-dg-column>
+                <clr-dg-column>Fecha</clr-dg-column>
+                <clr-dg-column>Hora</clr-dg-column>
+                <clr-dg-column>Realizado por</clr-dg-column>
+                <clr-dg-column>comentario</clr-dg-column>
+                
+
+                <clr-dg-row *clrDgItems="let riegoInfo of riegoInfoList">
+
+                    <clr-dg-cell>
+                        
+                        <button class="btn btn-primary btn-icon btn-sm"  
+                            (click)="onViewRiegoInfo(riegoInfo)">  
+                            <clr-icon shape="search"></clr-icon>
+                        </button>
+                        
+                    </clr-dg-cell>
+                    <clr-dg-cell>{{riegoInfo.fecha}}</clr-dg-cell>
+                    <clr-dg-cell>{{riegoInfo.hora}}</clr-dg-cell>
+                    <clr-dg-cell>{{riegoInfo.operario.nombreOperaciones }}</clr-dg-cell>
+                    <clr-dg-cell>{{riegoInfo.comentario}}</clr-dg-cell>
+                
+                </clr-dg-row>
+            
+                <clr-dg-footer>
+                <strong>Ultimos 21 Riegos</strong>
+                </clr-dg-footer>
+            </clr-datagrid>
+
+
+        </div>
+
+    </div>
+</ng-template>
+
+
+
+<!-- RiegoInfo Modal Dialog -->
+
+<clr-modal [(clrModalOpen)]="openedRiegoInfoDialog" *ngIf="selectedRiegoInfo">
+
+    <h3 class="modal-title">
+        <strong>Riego</strong>
+    </h3>
+    <div class="modal-body">
+      
+        <form clrForm #myRiegoInfoForm="ngForm">
+             
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="user" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-input-container class="mt-0">
+                      <label class="clr-col-12">Operario</label>
+                      <input class="clr-col-12" clrInput type="text" 
+                          name="operario" 
+                          [(ngModel)]="selectedRiegoInfo.operario.nombreOperaciones" 
+                          readonly 
+                          />
+                  </clr-input-container>
+              </div>
+          </div>
+
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="calendar" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-input-container class="mt-0">
+                      <label class="clr-col-12">Fecha de Riego</label>
+                      <input class="clr-col-12" clrInput type="text"  
+                          name="fecha" 
+                          [(ngModel)]="selectedRiegoInfo.fecha"  
+                          readonly  
+                          />
+                      
+                  </clr-input-container>
+              </div>
+          </div>
+
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="clock" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-input-container class="mt-0">
+                        <label class="clr-col-12">Hora de Riego</label>
+                        <input class="clr-col-12" clrInput type="text"  
+                            name="hora" 
+                            [(ngModel)]="selectedRiegoInfo.hora"  
+                            readonly  
+                            />
+                        
+                  </clr-input-container>
+
+              </div>
+          </div>
+
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="note" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-textarea-container class="mt-0">
+                      <label class="clr-col-12">Comentario</label>
+                      <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                          name="comentario" 
+                          [(ngModel)]="selectedRiegoInfo.comentario"   
+                          readonly 
+                          ></textarea>
+                  </clr-textarea-container>
+              </div>
+          </div>
+
+        </form>
+        
+    </div>             
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="openedRiegoInfoDialog = false">Cerrar</button>
+    </div> 
+
+</clr-modal>

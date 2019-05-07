@@ -1,0 +1,223 @@
+<div *ngIf="emptyImagenesLote; then thenEmptyImagenesLoteBlock else elseEmptyImagenesLoteBlock"></div>
+<ng-template #thenEmptyImagenesLoteBlock>
+
+  <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        No hay im&aacute;genes del lote.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+</ng-template>
+
+<ng-template #elseEmptyImagenesLoteBlock>
+
+    <div class="clr-row" *ngIf="imagenLoteList">
+            <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4" 
+                *ngFor="let imagen of imagenLoteList">
+                <div class="card">
+                    <div class="card-img">
+                        <img class="img-fluid" src="{{globalService.getLoteImagesDir() + imagen.imagen}}" alt="">
+                    </div>
+                    <div class="card-block">
+                        
+                            <div class="clr-row">
+                                <div class="clr-col-6">
+                                    <div class="card-text">
+                                        <clr-icon shape="calendar"></clr-icon> {{imagen.fecha}}
+                                    </div>
+                                </div>
+                                <div class="clr-col-6 text-right">
+                                    <button type="button" class="btn btn-icon btn-sm btn-link mr-0" 
+                                        (click)="onDeleteImagenLote(imagen)">
+                                        <clr-icon shape="trash"></clr-icon>
+                                    </button>
+                                </div> 
+                            </div> 
+                        
+                    </div>
+                </div>
+            </div>
+    </div> 
+
+</ng-template>
+
+
+<!--
+<div class="clr-row">
+  <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+      <div class="card">
+          <div class="card-img">
+              <img class="img-fluid" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+          </div>
+          <div class="card-block">
+                
+                    <div class="clr-row">
+                        <div class="clr-col-6">
+                            <div class="card-text">
+                                <clr-icon shape="calendar"></clr-icon> 21/04/2019
+                            </div>
+                        </div>
+                        <div class="clr-col-6 text-right">
+                            <button type="button" class="btn btn-icon btn-sm btn-link mr-0">
+                                <clr-icon shape="trash"></clr-icon>
+                            </button>
+                        </div> 
+                    </div> 
+                 
+          </div>
+        </div>
+  </div>
+
+  
+  <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+      <a href="#" class="card clickable">
+          <div class="card-img">
+              <img class="img-fluid " src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+          </div>
+          <div class="card-block">
+              <p class="card-text">
+                  <clr-icon shape="calendar"></clr-icon>
+              </p>
+          </div>
+      </a>
+  </div>
+  <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+      <a href="#" class="card clickable">
+          <div class="card-img">
+              <img class="img-fluid " src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+          </div>
+          <div class="card-block">
+              <p class="card-text">
+                  <clr-icon shape="calendar"></clr-icon>
+              </p>
+          </div>
+      </a>
+  </div>
+  
+</div> 
+
+
+
+<div class="clr-row">
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+
+</div>   
+
+
+<div class="clr-row">
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="clr-col-12 clr-col-sm-12 clr-col-md-4 clr-col-lg-4 clr-col-xl-4">
+        <a href="#" class="card clickable">
+            <div class="card-img">
+                <img class="img-fluid " src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    <clr-icon shape="calendar"></clr-icon>
+                </p>
+            </div>
+        </a>
+    </div>
+
+</div>
+-->
+<br>
+<br>
+
+<!-- Delete ImagenLote Dialog -->
+<clr-modal [(clrModalOpen)]="openedImagenLoteDeleteDialog" [clrModalSize]="'sm'" *ngIf="selectedImagenLote">
+    <h3 class="modal-title">Borrar Imagen</h3>
+    <div class="modal-body">
+            <div class="card">
+                <div class="card-img">
+                    <img class="img-fluid" src="{{globalService.getLoteImagesDir() + selectedImagenLote.imagen}}" alt="">
+                </div>
+                <div class="card-footer">
+                    <clr-icon shape="calendar"></clr-icon> {{selectedImagenLote.fecha}}
+                </div>
+<!--
+                <div class="card-block">
+                    
+                        <div class="clr-row">
+                            <div class="clr-col-6">
+                                <div class="card-text">
+                                    <clr-icon shape="calendar"></clr-icon> {{selectedImagenLote.fecha}}
+                                </div>
+                            </div>
+                            <div class="clr-col-6 text-right">
+                                <button type="button" class="btn btn-icon btn-sm btn-link mr-0" 
+                                    (click)="onDeleteImagenLote(imagen)">
+                                    <clr-icon shape="trash"></clr-icon>
+                                </button>
+                            </div> 
+                        </div> 
+                    
+                </div>
+-->                
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedImagenLoteDeleteDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>

@@ -1,0 +1,77 @@
+
+<div class="clr-row clr-justify-content-center">
+    <div class="clr-col-12 clr-col-sm-6 col-md-5 clr-col-lg-5">
+        <a class="card clickable" [routerLink]="['lotes']" (click)="onLotesClick()">
+            <div class="card-header">
+                <div class="clr-row justify-content-between">
+                    <div class="clr-col">
+                        LOTES - {{ selectedSector?.nombre }}   
+                    </div>
+                    <div class="clr-col-3 text-right">
+                        <span class="font-weight-bold mb-0">{{ selectedSector?.numLotes }}</span>
+                        <h5 class="card-title text-muted mb-0">lotes</h5>
+    
+                    </div>
+                </div>
+                       
+            </div>
+            
+            <div class="card-block"> 
+                <ul class="list">
+                    <li>Crear Nuevo Lote</li>
+                    <li>
+                        Trazabilidad de Lote
+                        <ul class="list">
+                            <li>Riegos</li>
+                            <li>Abonados</li>
+                            <li>Insecticidas</li>
+                            <li>Fungicidas</li>
+                        </ul>
+                    </li>
+                    <li>Imágenes</li>
+                    <li>Anotaciones</li>
+                </ul> 
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary">LOTES  {{ selectedSector?.nombre | uppercase }}</a>
+            </div>
+          </a>
+    </div>
+    <div class="clr-col-12 clr-col-sm-6 col-md-5 clr-col-lg-5">
+        <a class="card clickable" [routerLink]="['especies']" (click)="onEspeciesClick()">
+            <div class="card-header">
+              
+                <div class="clr-row justify-content-between">
+                    <div class="clr-col">
+                        ESPECIES - {{ selectedSector?.nombre }} 
+                    </div>
+                    <div class="clr-col-4 text-right">
+                        <span class="font-weight-bold mb-0">{{ selectedSector?.numEspecies }}</span>
+                        <h5 class="card-title text-muted mb-0">especies</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-block">
+                <ul class="list">
+                    <li>Especies del Sector </li>
+                    <li>
+                        Trazabilidad de Especies
+                        <ul class="list">
+                            <li>Riegos</li>
+                            <li>Abonados</li>
+                            <li>Insecticidas</li>
+                            <li>Fungicidas</li>
+                        </ul>
+                    </li>
+                    <li>Imágenes</li>
+                    <li>Anotaciones</li>
+                </ul> 
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary">ESPECIES {{ selectedSector?.nombre | uppercase }}</a>
+            </div>
+          </a>
+    </div>
+
+</div>

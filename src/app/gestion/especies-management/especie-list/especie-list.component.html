@@ -1,0 +1,108 @@
+
+<div *ngIf="emptyEspecies; then thenEspecieBlock else elseEspecieBlock"></div>
+<ng-template #thenEspecieBlock>
+
+    <div class="alert alert-info" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    No hay Especies creadas.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
+<ng-template #elseEspecieBlock>
+
+        <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-12 clr-col-md-11 clr-col-lg-10 clr-col-xl-10">
+
+                <clr-datagrid>
+                    <clr-dg-column>Imagen</clr-dg-column>
+                    <clr-dg-column>Nombre</clr-dg-column>
+                    <clr-dg-column>Nombre Cientifico</clr-dg-column>
+                    <clr-dg-column>Nombre Comun</clr-dg-column>
+                    <clr-dg-column>Variedades</clr-dg-column>
+                    <clr-dg-column></clr-dg-column>
+                
+                    <clr-dg-row *clrDgItems="let especie of especieList">
+                        <clr-dg-cell>
+                            <!--
+                            <img src="{{ especie.imagen }}" alt="" class="img-thumbnail">
+                            -->
+                            <clr-signpost> 
+                                <img src="{{ especie.imagen }}" alt="" class="img-thumbnail" clrSignpostTrigger>    
+                                <clr-signpost-content [clrPosition]="'right-middle'" *clrIfOpen>
+                                    <h3 style="margin-top: 0">{{ especie.nombre }}</h3>
+                                    <p>{{ especie.nombreCientifico }}</p>
+                                    <img src="{{ especie.imagen }}" alt="">
+                                </clr-signpost-content>
+                            </clr-signpost>
+                            
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <strong>
+                                {{ especie.nombre }}
+                            </strong>
+                            <!--
+                            <clr-signpost>     
+                                <clr-signpost-content [clrPosition]="'right-middle'" *clrIfOpen>
+                                    <h3 style="margin-top: 0">{{ especie.nombre }}</h3>
+                                    <p>{{ especie.nombreCientifico }}</p>
+                                    <img src="{{ especie.imagen }}" alt="">
+                                </clr-signpost-content>
+                            </clr-signpost>
+                            -->
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <strong>
+                                {{ especie.nombreCientifico }}
+                            </strong>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            {{ especie.nombreComun }}
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <ul class="list">
+                                <li *ngFor="let variedad of especie.variedad">
+                                    {{ variedad.nombre }}
+                                </li>
+                            </ul>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <button class="btn btn-icon btn-sm" (click)="onEditEspecie()"  routerLink="/gestion/especie/{{especie.id}}/edit">
+                                <clr-icon shape="note"></clr-icon>
+                            </button>
+                            <button class="btn btn-icon btn-sm">
+                                <clr-icon shape="trash" (click)="onDeleteEspecie(especie)"></clr-icon>
+                            </button>
+                        </clr-dg-cell>
+                    </clr-dg-row>
+                
+                    <clr-dg-footer>{{especieList?.length}} Especies</clr-dg-footer>
+                </clr-datagrid>
+
+            </div>
+        </div>
+
+</ng-template>            
+
+
+
+
+<clr-modal [(clrModalOpen)]="openedEspecDialog" [clrModalSize]="'sm'">
+    <h3 class="modal-title">Borrar Especie</h3>
+    <div class="modal-body">
+        <p>¿ Borrar especie <strong>{{ selectedEspecie?.nombre }}</strong> ?</p>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openedEspecDialog = false">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onModalDelete()">Borrar</button>
+    </div>
+</clr-modal>

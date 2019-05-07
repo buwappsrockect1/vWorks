@@ -1,0 +1,116 @@
+/*
+      this.especieService.getEspecies()
+        .subscribe( (especieArr: Especie[]) => {
+
+
+            this.especieList = especieArr;
+
+            // today's date
+            this.today = formatDate( Date.now(), 'dd/MM/yyyy', 'es');
+
+            // reactive form
+            this.loteForm = this.fb.group({
+              id:                       [''],
+              nombre:                   ['hola'],
+              especie:                  [ '' , Validators.required ],
+              variedad:                 [ '' , Validators.required ],
+              cantidad:                 [ 0  , Validators.required ],
+              stockMinimo:              [ 0  , Validators.required ],
+              sector:                   [ '' , Validators.required ],
+              fechaEntrada:             [ this.today , Validators.required ],
+              operarioEncargado:        [ 1 , Validators.required ],
+              proveedorOrigen:          [ 0 , Validators.required ],
+              codProveedor:             ['' , Validators.required ],
+              qrTrazabilidad:           [''],
+              notas:                    ['']
+
+            });
+*/
+
+/*
+            // get the route params to edit a lote or create a new one
+            this.route.params
+              .subscribe( (params: Params) => {
+
+                const id_lote = parseInt( params['id_lote'], 10 );
+                if ( id_lote ) {
+
+                    // Editing this lote
+
+                    this.loteService.getLote( id_lote )
+                      .subscribe( (lot: Lote) => {
+
+                        this.lote = lot;
+
+                        // if it is a valid lote
+                        if (this.lote) {
+
+                          // load variedad of this especie
+                          this.especieService.getVariedad( this.lote.especie )
+                            .subscribe( ( variedadArr: Variedad[] ) => {
+
+                              // variedadEspecie list
+                              this.variedadEspecieList = variedadArr;
+
+                              // load the sector values
+                              this.sectorService.getSectores()
+                                .subscribe( ( sectorArr: Sector[] ) => {
+
+                                  // sectorList
+                                  this.sectorList = sectorArr;
+
+                                  // load the form with data
+                                  const tmpLote = this.lote ;
+                                  this.loteForm.patchValue( tmpLote );
+*/
+
+  /*
+                                  this.proveedorService.getProveedores()
+                                    .subscribe( (proveedorArr: Proveedor[]) => {
+
+                                        // proveedorList
+                                        this.proveedoresList = proveedorArr;
+
+
+                                    });
+*/
+
+/*
+                                });
+
+                            });
+
+
+                        } else {
+
+                            this.router.navigate(['/not-found']);
+
+                        }
+
+                      });
+
+                } else {
+
+
+                  // we are creating a new lote
+                  this.lote = new Lote();
+
+
+                  // sets default value for especie
+                  this.loteForm.controls['especie'].setValue( this.especieDefaultValue() );
+
+                  // sets default value for variedad
+                  this.getVariedad( this.especieIdSelected );
+
+                  // sets default value for sector
+                  this.sectorDefaultValue();
+
+                  // sets default value for proveedor
+                  this.proveedorDefaultValue();
+
+                }
+
+              });
+
+        });
+*/

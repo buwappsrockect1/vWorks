@@ -1,0 +1,123 @@
+
+<div class="clr-row clr-justify-content-center">
+  <div class="clr-col-12 clr-col-md-8 clr-col-lg-6 mmr-0">
+      
+      <div class="card" *ngIf="loteSelected">
+        <form clrForm #myLoteInfoForm="ngForm" novalidate>
+
+            <div class="card-header">
+              Lote - {{ loteSelected.nombre }}
+            </div>
+
+            <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+                
+                <div class="card-text">
+
+
+                  <clr-input-container [ngStyle]="{'margin-top': '0'}">
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Nombre</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="nombre" 
+                          [(ngModel)]="loteSelected.nombre" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Especie</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                            name="especie" 
+                            [(ngModel)]="loteSelected.especie.nombre" 
+                            readonly />
+                  </clr-input-container>
+   
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Variedad</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="variedad" 
+                          [(ngModel)]="loteSelected.variedad.nombre" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Cantidad</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                          name="cantidad"  
+                          [(ngModel)]="loteSelected.cantidad" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Stock M&iacute;nimo</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                          name="stockMinimo"   
+                          [(ngModel)]="loteSelected.stockMinimo" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Sector</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="sector"  
+                          [(ngModel)]="loteSelected.sector.nombre" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Fecha de Entrada</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="fechaEntrada"  
+                          [(ngModel)]="loteSelected.fechaEntrada" 
+                          readonly />
+                  </clr-input-container>
+
+                  <clr-input-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Operario Encargado</label>
+                        <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                            name="operarioEncargado"  
+                            [(ngModel)]="loteSelected.operarioEncargado.nombreOperaciones" 
+                            readonly />
+                  </clr-input-container>
+ 
+                  <clr-input-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Proveedor</label>
+                        <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                            name="proveedorOrigen" 
+                            [(ngModel)]="loteSelected.proveedorOrigen.nombre"    
+                            readonly />
+                  </clr-input-container>
+                    
+                  <clr-input-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Codigo Proveedor</label>
+                        <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                            name="codProveedor" 
+                            [(ngModel)]="loteSelected.codProveedor"   
+                            readonly />
+                  </clr-input-container>
+  
+                  <clr-input-container>
+                      <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Qr Trazabilidad</label>
+                      <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                          name="qrTrazabilidad"  
+                          [(ngModel)]="loteSelected.qrTrazabilidad" 
+                          readonly />
+                  </clr-input-container>
+
+
+                  <clr-textarea-container>
+                        <label class="clr-col-12">Notas</label>
+                        <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                            name="notas" 
+                            [(ngModel)]="loteSelected.notas"></textarea>
+                  </clr-textarea-container>
+                         
+
+                </div>
+            </div>
+
+        </form>
+          
+      </div>
+  </div>
+</div>
+
+

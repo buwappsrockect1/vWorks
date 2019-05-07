@@ -1,0 +1,110 @@
+<div *ngIf="emptyNotasPriv; then thenEmptyNotasPrivBlock else elseEmptyNotasPrivBlock"></div>
+<ng-template #thenEmptyNotasPrivBlock>
+
+  <clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false">
+    <clr-alert-item>
+      <span class="alert-text">
+        No hay notas privadas para el lote.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+
+</ng-template>
+
+<ng-template #elseEmptyNotasPrivBlock>
+    <div class="clr-row">
+        
+        <div class="clr-col-12">
+            
+            <clr-datagrid>
+                <clr-dg-column>Ver</clr-dg-column>
+                <clr-dg-column>Fecha</clr-dg-column>
+                <clr-dg-column>Nota</clr-dg-column>
+              
+                <clr-dg-row *clrDgItems="let nota of notasLoteList">
+
+                    <clr-dg-cell>
+                        
+                        <button class="btn btn-primary btn-icon btn-sm"  
+                            (click)="onViewNota(nota)">  
+                            <clr-icon shape="search"></clr-icon>
+                        </button>
+                        
+                    </clr-dg-cell>
+                    <clr-dg-cell>{{nota.fecha}}</clr-dg-cell>
+                    <clr-dg-cell>{{nota.nota}}</clr-dg-cell>
+
+                
+                </clr-dg-row>
+            
+                <clr-dg-footer>
+                <strong>Ultimas {{notasLoteList.length}} Notas</strong>
+                </clr-dg-footer>
+            </clr-datagrid>
+
+
+        </div>
+
+    </div>
+</ng-template>
+
+
+
+<!-- Notas Modal Dialog -->
+
+<clr-modal [(clrModalOpen)]="openedNotasPrivLoteDialog" *ngIf="selectedNota">
+
+    <h3 class="modal-title">
+        <strong>Nota Privada</strong>
+    </h3>
+    <div class="modal-body">
+      
+        <form clrForm #myNotaPrivForm="ngForm">
+             
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="calendar" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-input-container class="mt-0">
+                      <label class="clr-col-12">Fecha</label>
+                      <input class="clr-col-12" clrInput type="text"  
+                          name="fecha" 
+                          [(ngModel)]="selectedNota.fecha"  
+                          readonly  
+                          />
+                      
+                  </clr-input-container>
+              </div>
+          </div>
+
+
+          <div class="clr-row">
+              <div class="clr-col-4">
+                  <div class="icon-big text-center">
+                    <clr-icon shape="note" size="48"></clr-icon>
+                  </div>  
+              </div>
+              <div class="clr-col-8">
+                  <clr-textarea-container class="mt-0">
+                      <label class="clr-col-12">Comentario</label>
+                      <textarea clrTextarea rows="5" class="clr-col-12" placeholder="" 
+                          name="nota" 
+                          [(ngModel)]="selectedNota.nota"   
+                          readonly 
+                          ></textarea>
+                  </clr-textarea-container>
+              </div>
+          </div>
+
+        </form>
+        
+    </div>             
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="openedNotasPrivLoteDialog = false">Cerrar</button>
+    </div> 
+
+</clr-modal>
+

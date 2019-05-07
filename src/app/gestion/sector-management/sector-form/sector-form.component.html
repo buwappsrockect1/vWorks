@@ -1,0 +1,52 @@
+<div [ngStyle]="{'padding':'0 0.5rem'}">
+ 
+    <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+                <div class="card fadeDown in">
+                    <form  clrForm *ngIf="sector" novalidate  [formGroup]="sectorForm" (ngSubmit)="onSubmit()">
+                    <div class="card-header">
+                        
+                        <div *ngIf="sector.id; then editSectBlock else newSectBlock"></div>
+                        <ng-template #editSectBlock>
+                            Editar Sector
+                        </ng-template>
+                        <ng-template #newSectBlock>
+                            Nuevo Sector
+                        </ng-template>
+                        
+                    </div>
+                    <div class="card-block">
+                        
+                        <div class="card-text">
+                            
+                                <clr-input-container>
+                                    <label class="clr-col-12">Nombre</label>
+                                    <input class="clr-col-12" clrInput type="text" 
+                                        name="nombre" 
+                                        formControlName="nombre" 
+                                        />
+                                    <clr-control-error>Introduzca el Nombre</clr-control-error>
+                                </clr-input-container>
+        
+                                <clr-input-container>
+                                    <label class="clr-col-12">Numero</label>
+                                    <input class="clr-col-12" clrInput type="number" 
+                                        name="numero" 
+                                        formControlName="numero" 
+                                        value="1"
+                                        />
+                                    <clr-control-error>Introduzca el Numero</clr-control-error>
+                                </clr-input-container>
+                            
+        
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button [disabled]="!sectorForm.valid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                        <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+                    </div>
+                    </form>  
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100% ;
+}
+
+.badge{
+    font-size: 0.6rem;
+}
+
+.icon-big {
+    
+    min-height: 64px;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.text-white {
+    color: #fff!important;
+}
+
+.icon-shape {
+    display: inline-flex;
+    padding: 12px;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.rounded-circle {
+    border-radius: 50%!important;
+}
+
+.bg-red-sector {
+    background-color: #f5365c !important;
+}
+
+.bg-green-sector {
+    /*background-color: #7ac29a !important;*/
+    background-color: #96c03d !important;
+}
+
+.green-color {
+    color: #96c03d !important;
+}

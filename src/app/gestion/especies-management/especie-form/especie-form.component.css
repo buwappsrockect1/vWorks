@@ -1,0 +1,19 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100%;
+}
+
+
+.button-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.sm-height {
+    height: 20em;
+}

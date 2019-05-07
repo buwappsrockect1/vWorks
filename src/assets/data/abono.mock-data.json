@@ -1,0 +1,100 @@
+[
+    {
+        "id":                             1   ,
+        "nombre":         "Nitrogeno"         ,
+        "simbolo":        "N"                 ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             2   ,
+        "nombre":         "Fósforo"           ,
+        "simbolo":        "P"                 ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             3   ,
+        "nombre":         "Potasio"           ,
+        "simbolo":        "K"                 ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             4   ,
+        "nombre":         "Calcio"            ,
+        "simbolo":        "Ca"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             5   ,
+        "nombre":         "Magnesio"         ,
+        "simbolo":        "Mg"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             6   ,
+        "nombre":         "Sodio"             ,
+        "simbolo":        "Na"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             7   ,
+        "nombre":         "Azufre"            ,
+        "simbolo":        "S"                 ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             8   ,
+        "nombre":         "Boro"              ,
+        "simbolo":        "B"                 ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             9   ,
+        "nombre":         "Cobalto"           ,
+        "simbolo":        "Co"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             10  ,
+        "nombre":         "Cobre"             ,
+        "simbolo":        "Cu"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                             11  ,
+        "nombre":         "Hierro"            ,
+        "simbolo":        "Fe"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                            12   ,
+        "nombre":         "Manganeso"         ,
+        "simbolo":        "Mn"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                            13   ,
+        "nombre":         "Molibdeno"         ,
+        "simbolo":        "Mb"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    },
+    {
+        "id":                            14   ,
+        "nombre":         "Zinc"              ,
+        "simbolo":        "Zn"                ,
+        "composicion":    ""                  ,
+        "otros":          ""
+    }
+]

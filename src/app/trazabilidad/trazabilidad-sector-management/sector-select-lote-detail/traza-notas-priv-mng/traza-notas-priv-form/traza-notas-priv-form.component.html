@@ -1,0 +1,59 @@
+
+
+<div [ngStyle]="{'padding':'0 0.5rem'}">
+ 
+    <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-12 clr-col-md-8 clr-col-lg-5">
+                <div class="card fadeDown in">
+                  <form  clrForm *ngIf="notasPrivLote" novalidate  [formGroup]="notasPrivLoteForm" (ngSubmit)="onSubmit()">
+                    <div class="card-header">
+                        
+                        <div *ngIf="notasPrivLote.id; then editNotaBlock else newNotaBlock"></div>
+                        <ng-template #editNotaBlock>
+                            Editar Nota
+                        </ng-template>
+                        <ng-template #newNotaBlock>
+                            Nueva Nota
+                        </ng-template>
+                        
+                    </div>
+                    <div class="card-block">
+  
+                      
+                        <div class="card-text">
+                                <clr-date-container class="mt-0">
+                                    <label class="clr-col-12">Fecha</label>
+                                    <input class="clr-col-12" type="date" 
+                                        clrDate          
+                                        name="fecha" 
+                                        formControlName="fecha" 
+                                        required
+                                        />
+                                    <clr-control-error>Introduzca la fecha de la Nota</clr-control-error>
+                                </clr-date-container>
+                                <clr-textarea-container>
+                                    <label class="clr-col-12">Nota</label>
+                                    <textarea clrTextarea rows="4" class="clr-col-12" placeholder="" 
+                                        name="nota" 
+                                        formControlName="nota"
+                                        ></textarea>
+                                    <clr-control-error>Introduzca la nota</clr-control-error>                              
+                                </clr-textarea-container>
+        
+        
+                        </div>
+                       
+                    </div>
+                    <div class="card-footer">
+                        <button [disabled]="!notasPrivLoteForm.valid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                        <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+                    </div>
+                  </form>  
+                </div>
+            </div>
+    </div>
+    {{ notasPrivLoteForm.value | json }}
+  </div>
+  
+  
+  

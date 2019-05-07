@@ -1,0 +1,31 @@
+.clr-input, .clr-input-wrapper ,
+.clr-select, .clr-select-wrapper,
+.clr-textarea, .clr-textarea-wrapper {
+    width: 100% ;
+}
+
+.bg-green-sector {
+    /*background-color: #7ac29a !important;*/
+    background-color: #96c03d !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .clr-row .mmr-0 {
+        margin-left: .3rem;
+        margin-right: 0;
+    }
+    
+    .card-block , .card-header {
+        padding: .5rem;
+    }  
+    
+    .card-header{
+        font-size: .6rem;
+        font-weight: 400;
+    }
+
+    .clr-form-control {
+        margin-top: .5rem;
+    }    
+}

@@ -1,0 +1,117 @@
+<clr-header class="header-5">
+  <div class="branding">
+    <a routerLink="/" class="nav-link">
+      <clr-icon shape="vm-bug"></clr-icon>
+      <span class="title">Vivero Works</span>
+    </a>
+  </div>
+  <div class="header-nav" [clr-nav-level]="1">
+    <a 
+      routerLink="/trazabilidad" routerLinkActive="active" 
+      class="nav-link nav-text" 
+      (click)="setMainMenu(MAIN_MENU_OPTIONS.TRAZABILIDAD)">
+      Trazabilidad
+    </a>
+    <a 
+      routerLink="/albaranes" routerLinkActive="active" 
+      class="nav-link nav-text" 
+      (click)="setMainMenu(MAIN_MENU_OPTIONS.ALBARANES)">
+      Albaranes
+    </a>
+    <a 
+      routerLink="/gestion" routerLinkActive="active" 
+      class="nav-link nav-text" 
+      (click)="setMainMenu(MAIN_MENU_OPTIONS.GESTION)">
+      Gesti&oacute;n
+    </a>
+  </div>
+  
+</clr-header>
+<nav class="subnav" [clr-nav-level]="2" *ngIf="selectedMainMenu != MAIN_MENU_OPTIONS.TRAZABILIDAD">
+
+    <div [ngSwitch]="selectedMainMenu">
+        <div *ngSwitchCase="MAIN_MENU_OPTIONS.TRAZABILIDAD">
+            <!--
+            <ul class="nav">
+
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/trazabilidad/sector" routerLinkActive="active"> 
+                    Sectores
+                  </a>
+                </li>
+                
+            </ul>
+            -->
+        </div>
+        <div *ngSwitchCase="MAIN_MENU_OPTIONS.ALBARANES">
+            <ul class="nav">
+
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/albaranes/entrada" routerLinkActive="active">
+                    Entrada Albaran
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/albaranes/salida" routerLinkActive="active">
+                    Salida Albaran (Venta)
+                  </a>
+                </li>
+                
+            </ul>
+        </div>
+        <div *ngSwitchCase="MAIN_MENU_OPTIONS.GESTION">
+            <ul class="nav">
+
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/sector" routerLinkActive="active" (click)="onGestionSector()">
+                    Sectores
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" 
+                      routerLink="/gestion/lote" routerLinkActive="active" (click)="onGestionLote()">
+                      Lotes
+                    </a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/especie" routerLinkActive="active" (click)="onGestionEspecie()">
+                    Especies
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/abono" routerLinkActive="active" (click)="onGestionEspecie()">
+                    Abonos
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/insecticida" routerLinkActive="active" (click)="onGestionInsecticida()">
+                    Insecticidas
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/fungicida" routerLinkActive="active" (click)="onGestionFungicida()">
+                    Fungicidas
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" 
+                    routerLink="/gestion/proveedor" routerLinkActive="active" (click)="onGestionProveedor()">
+                    Proveedores
+                  </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+  
+</nav>
+

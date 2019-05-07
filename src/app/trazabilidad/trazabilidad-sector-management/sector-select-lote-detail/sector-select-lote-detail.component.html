@@ -1,0 +1,53 @@
+
+<div class="content-container">
+    <div class="content-area" [ngStyle]="{'padding': '0 .5rem'}">
+        <router-outlet></router-outlet>
+    </div>
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+        <a clrVerticalNavLink routerLink="./lote-info" routerLinkActive="active">
+            <clr-icon clrVerticalNavIcon shape="info-standard"></clr-icon>
+            Lote Info
+        </a>
+        <clr-vertical-nav-group
+                routerLinkActive="active">
+            <clr-icon shape="file-group" clrVerticalNavIcon></clr-icon>
+            Tratamientos
+            <clr-vertical-nav-group-children>
+                    <a clrVerticalNavLink
+                        routerLink="./riego/list"
+                        routerLinkActive="active">
+                        Riegos
+                    </a>
+                    <a clrVerticalNavLink
+                        routerLink="./abono/list"
+                        routerLinkActive="active">
+                        Abonados
+                    </a>
+                    <a clrVerticalNavLink
+                        routerLink="./insecticida/list"
+                        routerLinkActive="active">
+                        Insecticidas
+                    </a>
+                    <a clrVerticalNavLink
+                        routerLink="./fungicida/list"
+                        routerLinkActive="active">
+                        Fungicidas
+                    </a>
+                </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+        <a clrVerticalNavLink routerLink="./imagenes/list" routerLinkActive="active">
+            <clr-icon clrVerticalNavIcon shape="picture"></clr-icon>
+            Im&aacute;genes
+        </a>
+        
+        <a clrVerticalNavLink routerLink="./notas/list" routerLinkActive="active">
+            <clr-icon clrVerticalNavIcon shape="note"></clr-icon>
+            Notas
+        </a>
+        <a clrVerticalNavLink routerLink="./notas-priv/list" routerLinkActive="active">
+            <clr-icon clrVerticalNavIcon shape="eye-hide"></clr-icon>
+            Notas Privadas
+        </a>
+
+    </clr-vertical-nav>
+</div>

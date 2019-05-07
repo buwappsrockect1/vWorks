@@ -1,0 +1,222 @@
+<div class="clr-row clr-justify-content-center">
+    <div class="clr-col-12 clr-col-md-8 clr-col-lg-6">
+        
+        <div class="card">
+            <p>Aqui va el formulario</p>
+
+<!--            
+          <form clrForm *ngIf="lote" [formGroup]="loteForm" novalidate  (ngSubmit)="onSubmit()">
+  
+              <div class="card-header">
+                  <div *ngIf="lote.id; then editLoteBlock else newLoteBlock"></div>
+                  <ng-template #editLoteBlock>
+                      Editar Lote
+                  </ng-template>
+                  <ng-template #newLoteBlock>
+                      Nuevo Lote
+                  </ng-template>
+              </div>
+
+              <div class="card-block" [ngStyle]="{'margin-top': '0'}">
+                  
+                  <div class="card-text">
+   
+                      <clr-input-container [ngStyle]="{'margin-top': '0'}" *ngIf="lote.id">
+                          <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Nombre del Lote</label>
+                          <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                              name="nombre" 
+                              formControlName="nombre" 
+                              [attr.readonly]="lote.id" 
+                              />
+                      </clr-input-container>
+                      
+                      
+                      <clr-select-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Especie</label>
+                        <select class="clr-col-7 clr-col-lg-8 clr-col-xl-7" 
+                            clrSelect 
+                            name="especie"   
+                            formControlName="especie"  
+                            (change)="onChangeEspecie($event)" 
+                            required>
+                            <option  *ngFor="let especie of especieList" 
+                                [value]="especie.id">
+                              {{ especie.nombre }}
+                            </option>
+                        </select>
+                        <clr-control-error>Introduzca la Especie</clr-control-error>
+                      </clr-select-container>
+    
+                      <div class="clr-form-control"> 
+                        <div class="clr-control-container">
+                            <button type="button" class="btn btn-primary" (click)="newVariedad()">
+                                <clr-icon shape="plus"></clr-icon>
+                                Nueva Variedad
+                            </button>
+                        </div>
+                      </div>
+                    
+
+                      <clr-select-container>
+                        <label class="clr-col-5  clr-col-lg-4 clr-col-xl-5">Variedad</label>   
+                        <select class="clr-col-7    clr-col-lg-8 clr-col-xl-7" 
+                            clrSelect 
+                            name="variedad"   
+                            formControlName="variedad"   
+                            required>
+                            <option  *ngFor="let variedadEspecie of variedadEspecieList" 
+                                [value]="variedadEspecie.nombreV">
+                            {{variedadEspecie.nombreV }}
+                            </option>
+                        </select>
+                        <clr-control-error>Introduzca la Variedad</clr-control-error>
+
+                      </clr-select-container>
+
+                      <clr-input-container>
+                            <div class="clr-form-control">
+                                <div class="clr-control-container">
+                                    
+                                    <button type="button" class="btn btn-primary" (click)="newVariedad()">
+                                        <clr-icon shape="plus"></clr-icon>
+                                        Nueva Variedad
+                                    </button>
+                                    
+                                </div>    
+                            </div>
+                      </clr-input-container>
+  
+                      
+                      <clr-input-container>
+                          <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Num. Unidades</label>
+                          <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                              name="cantidad" 
+                              formControlName="cantidad" 
+                              value="0"
+                              />
+                          <clr-control-error>Introduzca el N&uacute;mero de Unidades</clr-control-error>
+                      </clr-input-container>
+
+                      <clr-input-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Stock M&iacute;nimo</label>
+                        <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" clrInput type="number" 
+                            name="stockMinimo" 
+                            formControlName="stockMinimo" 
+                            value="0"
+                            />
+                        <clr-control-error>Introduzca el Stock M&iacute;nimo</clr-control-error>
+                      </clr-input-container>
+
+
+                      <clr-select-container>
+                        <label class="clr-col-5  clr-col-lg-4 clr-col-xl-5">Sector</label>
+                        <select class="clr-col-7 clr-col-lg-8 clr-col-xl-7" 
+                            clrSelect 
+                            name="sector"    
+                            formControlName="sector"   
+                            required>
+                            <option  *ngFor="let sector of sectorList" 
+                                [value]="sector.id">
+                              {{ sector.nombre }}
+                            </option>
+                        </select>
+                        <clr-control-error>Introduzca el Sector</clr-control-error>
+                      </clr-select-container>
+
+                      
+                      <clr-date-container>
+                          <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Fecha Entrada</label>
+                          <input class="clr-col-7 clr-col-lg-8 clr-col-xl-7" type="date" 
+                              clrDate          
+                              name="fechaEntrada" 
+                              formControlName="fechaEntrada"  
+                              required
+                              />
+                          <clr-control-error>Introduzca la fecha de Entrada</clr-control-error>
+                      </clr-date-container>
+
+-->
+
+<!--
+                      <clr-select-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Operario Encargado</label>
+                        <select class="clr-col-7 clr-col-lg-8 clr-col-xl-7" 
+                            clrSelect 
+                            name="operarioEncargado"   
+                            formControlName="operarioEncargado"   
+                            required>
+                            <option  *ngFor="let operario of operariosList" 
+                                [value]="operario.id">
+                              {{ operario.nombreOperaciones }}
+                            </option>
+                        </select>
+                        <clr-control-error>Introduzca el Operario</clr-control-error>
+                      </clr-select-container>
+
+                      <clr-select-container>
+                        <label class="clr-col-5 clr-col-lg-4 clr-col-xl-5">Proveedor</label>
+                        <select class="clr-col-7 clr-col-lg-8 clr-col-xl-7" 
+                            clrSelect 
+                            name="proveedorOrigen"   
+                            formControlName="proveedorOrigen"   
+                            required>
+                            <option value="1">(TO)- Viveros Totatal</option>
+                            <option value="2">(A1)- Viveros Axarquia 1</option>
+                            <option value="3">(A3)- Viveros Axarquia 2</option>
+                            <option value="3">(H1)- Viveros Guzman</option>
+                            <option value="3">(M1)- Viveros Marbella</option>
+-->                                                 
+                            <!--
+                            <option  *ngFor="let proveedor of proveedoresList" 
+                                [value]="proveedor.id">
+                              ({{ proveedor.nombre2Digitos }}) - {{ proveedor.nombre }}
+                            </option>
+                            -->
+<!--
+                        </select>
+                        <clr-control-error>Introduzca el Proveedor</clr-control-error>
+                      </clr-select-container>
+-->
+
+
+                      <clr-input-container>
+                            <label class="clr-col-12 clr-col-md-6 clr-col-lg-4 clr-col-xl-5">Codigo en Proveedor</label>
+                            <input class="clr-col-12 clr-col-md-6 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                                name="codProveedor" 
+                                formControlName="codProveedor"  
+                                />
+                            <clr-control-error>Introduzca el Código en Proveedor</clr-control-error>
+                      </clr-input-container>
+
+                      <clr-input-container>
+                            <label class="clr-col-12 clr-col-md-6 clr-col-lg-4 clr-col-xl-5">QR Trazabilidad</label>
+                            <input class="clr-col-12 clr-col-md-6 clr-col-lg-8 clr-col-xl-7" clrInput type="text" 
+                                name="qrTrazabilidad" 
+                                formControlName="qrTrazabilidad"  
+                                />
+                            <clr-control-error>Introduzca el QR de Trazabilidad</clr-control-error>
+                      </clr-input-container>
+
+                      <clr-textarea-container>
+                            <label class="clr-col-12">Notas</label>
+                            <textarea clrTextarea rows="3" class="clr-col-12" placeholder="" 
+                                name="notas" 
+                                formControlName="notas"></textarea>
+                      </clr-textarea-container>
+
+                                
+ 
+                  </div>
+
+                  
+              </div>
+              <div class="card-footer">
+                  <button [disabled]="loteForm.invalid" type="submit" class="btn btn-primary">ACEPTAR</button>
+                  <button type="button" class="btn" (click)="onCancel()">CANCELAR</button>
+              </div>
+  
+          </form>
+            
+        </div>
+    </div>
+  </div>
