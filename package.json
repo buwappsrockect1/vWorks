@@ -1,6 +1,6 @@
 {
-  "name": "vivero-works045",
-  "version": "4.5.0",
+  "name": "vivero-works046",
+  "version": "4.6.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

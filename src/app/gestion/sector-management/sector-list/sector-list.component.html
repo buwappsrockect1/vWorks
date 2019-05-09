@@ -29,7 +29,7 @@
                 
             
                 <clr-dg-row *clrDgItems="let sector of sectorList; let i =index">
-                    <clr-dg-cell><strong>{{ i+1 }}</strong></clr-dg-cell>
+                    <clr-dg-cell><strong>{{ sector.numero }}</strong></clr-dg-cell>
                     <clr-dg-cell>{{ sector.nombre}}</clr-dg-cell>
                     <clr-dg-cell>
                         <button class="btn btn-icon btn-sm" (click)="onEditSector()" routerLink="/gestion/sector/{{sector.id}}/edit">
@@ -51,9 +51,23 @@
 </ng-template>
 
 
-<clr-modal [(clrModalOpen)]="openedDialog" [clrModalSize]="'sm'">
+<clr-modal [(clrModalOpen)]="openedDialog" [clrModalSize]="'md'">
     <h3 class="modal-title">Borrar Sector</h3>
     <div class="modal-body">
+
+        <div class="alert alert-danger" role="alert" *ngIf="deleteError">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        Sector con Lotes. Error al Borrar.
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <p>¿ Borrar <strong>{{ selectedSector?.nombre }}</strong> ?</p>
         
     </div>

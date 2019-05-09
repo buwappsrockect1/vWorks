@@ -20,6 +20,7 @@ export class SectorListComponent implements OnInit {
 
   openedDialog: boolean;
   emptySectors: boolean;
+  deleteError: boolean ;
 
   constructor(private sectorService: SectorService) { }
 
@@ -51,6 +52,7 @@ export class SectorListComponent implements OnInit {
 
     // the selected sector
     this.selectedSector = sector;
+    this.deleteError    = false ;
 
     // shows the modal dialog
     this.openedDialog = true;
@@ -60,20 +62,31 @@ export class SectorListComponent implements OnInit {
   onModalDelete() {
 
     this.sectorService.deleteSector(this.selectedSector.id)
-      .subscribe( (sectorArr: Sector[]) => {
+      .subscribe( (sectorArr: any) => {
 
-        this.sectorService.getSectores()
-          .subscribe( (sectorArr2: Sector[]) => {
+        // if there is an error
+        if ( sectorArr.error ){
 
-              this.sectorList = sectorArr2;
+            // trying to delete a sector with lotes
+            this.deleteError = true ;
 
-              this.emptySectors = (sectorArr2.length === 0);
+        } else {
 
-              // closes the modal dialog
-              this.openedDialog = false;
-              this.selectedSector = null;
+            this.sectorService.getSectores()
+              .subscribe( (sectorArr2: Sector[]) => {
 
-          });
+                  this.sectorList = sectorArr2;
+
+                  this.emptySectors = (sectorArr2.length === 0);
+
+                  // closes the modal dialog
+                  this.openedDialog = false;
+                  this.selectedSector = null;
+                  this.deleteError = false ;
+
+              });
+        }
+
 
       });
 
