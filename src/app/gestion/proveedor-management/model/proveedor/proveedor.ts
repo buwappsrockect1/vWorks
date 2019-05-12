@@ -10,4 +10,5 @@ export class Proveedor {
     personaContacto?:        string;
     direccion?:              string;
     localidad?:              string;
+    deleted?:                number;
 }

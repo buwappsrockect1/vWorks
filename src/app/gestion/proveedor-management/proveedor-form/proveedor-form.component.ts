@@ -33,7 +33,8 @@ export class ProveedorFormComponent implements OnInit {
           personaResponsable:       [''],
           personaContacto:          [''],
           direccion:                [''],
-          localidad:                ['']
+          localidad:                [''],
+          deleted:                  [0, Validators.required ]
       });
 
 
