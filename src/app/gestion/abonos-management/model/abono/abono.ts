@@ -6,5 +6,6 @@ export class Abono {
     simbolo:        string;
     composicion?:   string;
     otros?:         string;
+    deleted?:       number;
 
 }

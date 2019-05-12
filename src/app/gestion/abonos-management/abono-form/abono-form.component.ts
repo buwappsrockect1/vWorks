@@ -28,7 +28,8 @@ export class AbonoFormComponent implements OnInit {
         nombre:                   ['' , Validators.required ],
         simbolo:                  ['' , Validators.required ],
         composicion:              [''],
-        otros:                    ['']
+        otros:                    [''],
+        deleted:                  [0 , Validators.required]
 
       });
 
