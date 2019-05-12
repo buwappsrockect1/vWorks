@@ -8,4 +8,5 @@ export class Fungicida {
     princActivo:            PrincipioActivo[];
     contraindicaciones?:    string;
     plazoSeguridad?:        number;
+    deleted?:               number;
 }

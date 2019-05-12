@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Fungicida } from '../model/fungicida/fungicida';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FungicidaService } from '../services/fungicida/fungicida.service';
+import { PrincActivInsecticida } from '../model/princ_activ_insecticida/princ-activ-insecticida';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class FungicidaFormComponent implements OnInit {
         nombre:                   ['' , Validators.required ],
         princActivo:              this.fb.array([]),
         contraindicaciones:       [''],
-        plazoSeguridad:           [0]
+        plazoSeguridad:           [0] ,
+        deleted:                  [0 , Validators.required ]
 
       });
 
@@ -111,8 +113,14 @@ export class FungicidaFormComponent implements OnInit {
   }
 
   // adds a new princActivo group to the formArray
-  addPrincActivo( name: string = ''): void {
-    this.princActivo.push( this.fb.group({nombre: name}) );
+  addPrincActivo( id: number = 0, name: string = ''): void {
+
+    if ( id > 0 ) {
+      this.princActivo.push( this.fb.group( { id: id , nombre: name} ) );
+    } else {
+      this.princActivo.push( this.fb.group( { nombre: name} ) );
+    }
+
 
     // if there are more than one PrincActivo ( at least one is neeeded )
     if ( this.princActivo.length > 1 ) {
