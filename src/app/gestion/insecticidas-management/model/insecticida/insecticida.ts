@@ -8,4 +8,5 @@ export class Insecticida {
     princActivo:            PrincipioActivo[];
     contraindicaciones?:    string;
     plazoSeguridad?:        number;
+    deleted?:               number;
 }

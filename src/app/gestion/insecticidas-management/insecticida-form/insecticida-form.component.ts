@@ -33,8 +33,8 @@ export class InsecticidaFormComponent implements OnInit {
         nombre:                   ['' , Validators.required ],
         princActivo:              this.fb.array([]),
         contraindicaciones:       [''],
-        plazoSeguridad:           [0]
-
+        plazoSeguridad:           [0],
+        deleted:                  [0 , Validators.required ]
       });
 
       // get the route params to edit an insecticida or create a new one
@@ -62,8 +62,8 @@ export class InsecticidaFormComponent implements OnInit {
 
                           this.insecticida.princActivo.map( (princActivElem, index) => {
 
-                              // calls this method to create a form field
-                              this.addPrincActivo();
+                            // calls this method to create a form field
+                            this.addPrincActivo(princActivElem.id, princActivElem.nombre);
 
                           });
 
@@ -108,9 +108,17 @@ export class InsecticidaFormComponent implements OnInit {
     return this.insecticidaForm.get('princActivo') as FormArray;
   }
 
+
+
   // adds a new princActivo group to the formArray
-  addPrincActivo( name: string = ''): void {
-    this.princActivo.push( this.fb.group({nombre: name}) );
+  addPrincActivo( id: number = 0, name: string = ''): void {
+
+    if ( id > 0 ) {
+      this.princActivo.push( this.fb.group( { id: id , nombre: name} ) );
+    } else {
+      this.princActivo.push( this.fb.group( { nombre: name} ) );
+    }
+
 
     // if there are more than one PrincActivo ( at least one is neeeded )
     if ( this.princActivo.length > 1 ) {
@@ -134,6 +142,24 @@ export class InsecticidaFormComponent implements OnInit {
   }
 
   onSubmit() {
+
+
+    // iterate through the princ activos
+    for (let index = 0; index < this.princActivo.length; index++) {
+      const element = this.princActivo.at(index);
+
+      // get the field value and trim
+      let str = element.get('nombre').value as String;
+      str = str.trim();
+      element.get('nombre').setValue( str );
+
+      if ( str.length === 0 ) {
+        // shows the PrincActivo alert ( at least one PrincActivo )
+        this.bShowDeletePActivoAlert = true;
+        return;
+      }
+
+    }
 
     // if there is an insecticida to edit
     if (this.insecticida.id) {
