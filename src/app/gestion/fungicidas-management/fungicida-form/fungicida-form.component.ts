@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Fungicida } from '../model/fungicida/fungicida';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FungicidaService } from '../services/fungicida/fungicida.service';
 import { PrincActivInsecticida } from '../model/princ_activ_insecticida/princ-activ-insecticida';
+import { ClrForm } from '@clr/angular';
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { PrincActivInsecticida } from '../model/princ_activ_insecticida/princ-ac
   styleUrls: ['./fungicida-form.component.css']
 })
 export class FungicidaFormComponent implements OnInit {
+
 
 
   fungicidaForm: FormGroup;
@@ -64,10 +67,10 @@ export class FungicidaFormComponent implements OnInit {
                     // if there are PrincipiosActivos
                     if ( this.fungicida.princActivo.length > 0 ) {
 
-                        this.fungicida.princActivo.map( (variedadElem, index) => {
+                        this.fungicida.princActivo.map( (princActivElem, index) => {
 
                             // calls this method to create a form field
-                            this.addPrincActivo();
+                            this.addPrincActivo(princActivElem.id, princActivElem.nombre);
 
                         });
 
@@ -145,6 +148,24 @@ export class FungicidaFormComponent implements OnInit {
 
   onSubmit() {
 
+
+    // iterate through the princ activos
+    for (let index = 0; index < this.princActivo.length; index++) {
+      const element = this.princActivo.at(index);
+
+      // get the field value and trim
+      let str = element.get('nombre').value as String;
+      str = str.trim();
+      element.get('nombre').setValue( str );
+
+      if ( str.length === 0 ) {
+        // shows the PrincActivo alert ( at least one PrincActivo )
+        this.bShowDeletePActivoAlert = true;
+        return;
+      }
+
+    }
+
     // if there is an fungicida to edit
     if (this.fungicida.id) {
 
@@ -158,7 +179,6 @@ export class FungicidaFormComponent implements OnInit {
         });
 
     } else {
-
 
 
       // fungicida to insert

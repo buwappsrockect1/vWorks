@@ -43,9 +43,9 @@
                                     <label for="example" class="clr-control-label clr-col-12">Principio Activo</label>
                                     <div class="clr-control-container clr-col-10">
                                         <div class="clr-input-wrapper">
-                                            <input type="text"  class="clr-input" formControlName="nombre">
+                                            <input type="text"  class="clr-input" formControlName="nombre" required>
                                             <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
-                                            
+                                            <clr-control-error>Introduce Principio Activo</clr-control-error>
                                         </div>
                                     </div>
                                     <div class="clr-control-container clr-col-2">
@@ -59,21 +59,21 @@
                                     <!--Chosen name: {{ fungicidaForm.controls.princActivo.controls[princActivoIndex].controls.name.value }}-->
                             
                             </div>
-
-                            <div class="clr-control-container clr-col-12 mt-1" *ngIf="bShowDeletePActivoAlert">
-                                <div class="clr-input-wrapper">
-                                    <clr-alert #clrAlertDelete [clrAlertType]="'danger'" 
-                                              [clrAlertSizeSmall]="true" 
-                                              [clrAlertClosable]="false">
-                                        <clr-alert-item>
-                                            <span class="alert-text">
-                                                Se necesita al menos un Principio Activo.
-                                            </span>
-                                        </clr-alert-item>
-                                    </clr-alert>
-                                </div>    
+                            <div class="clr-form-control clr-row">
+                                <div class="clr-control-container clr-col-12 mt-1" *ngIf="bShowDeletePActivoAlert">
+                                    <div class="clr-input-wrapper">
+                                        <clr-alert #clrAlertDelete [clrAlertType]="'danger'" 
+                                                [clrAlertSizeSmall]="true" 
+                                                [clrAlertClosable]="false">
+                                            <clr-alert-item>
+                                                <span class="alert-text">
+                                                    Introduce Principio Activo.
+                                                </span>
+                                            </clr-alert-item>
+                                        </clr-alert>
+                                    </div>    
+                                </div>
                             </div>
-    
                         </div>
     
                       <clr-input-container>
