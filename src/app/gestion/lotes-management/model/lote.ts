@@ -12,4 +12,5 @@ export class Lote {
     codProveedor?:        string;
     qrTrazabilidad?:      string;
     notas?:               string;
+    deleted?:             number;
 }

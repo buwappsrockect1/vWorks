@@ -78,7 +78,8 @@ export class LoteFormMngComponent implements OnInit {
           IdProveedorOrigen:          [ 0 , Validators.required ],
           codProveedor:               ['' , Validators.required ],
           qrTrazabilidad:             [''],
-          notas:                      ['']
+          notas:                      [''],
+          deleted:                    [0 , Validators.required]
 
       });
 
