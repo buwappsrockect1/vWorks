@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
 
     // Production mode set to true , otherwise we are in development mode
-    PRODUCTION_MODE = true ;
+    PRODUCTION_MODE = false ;
 
 
     // Production host and port
