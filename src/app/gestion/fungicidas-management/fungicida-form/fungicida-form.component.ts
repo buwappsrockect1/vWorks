@@ -66,7 +66,7 @@ export class FungicidaFormComponent implements OnInit {
 
                     // if there are PrincipiosActivos
                     if ( this.fungicida.princActivo.length > 0 ) {
-
+s
                         this.fungicida.princActivo.map( (princActivElem, index) => {
 
                             // calls this method to create a form field

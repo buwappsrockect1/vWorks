@@ -12,5 +12,6 @@ export class Especie {
     public origen:                  string      ;
     public caracteristicas?:        string      ;
     public imagen?:                 string      ;
+    public deleted?:                number      ;
 }
 

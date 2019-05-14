@@ -94,7 +94,21 @@
                                 </div>
                                 <!--Chosen name: {{ especieForm.controls.variedad.controls[variedadIndex].controls.name.value }}-->
                         </div>
-                        
+                        <div class="clr-form-control clr-row">
+                            <div class="clr-control-container clr-col-12 mt-1" *ngIf="bShowDeleteVariedadAlert">
+                                <div class="clr-input-wrapper">
+                                    <clr-alert #clrAlertDelete [clrAlertType]="'danger'" 
+                                            [clrAlertSizeSmall]="true" 
+                                            [clrAlertClosable]="false">
+                                        <clr-alert-item>
+                                            <span class="alert-text">
+                                                Introduce la Variedad
+                                            </span>
+                                        </clr-alert-item>
+                                    </clr-alert>
+                                </div>    
+                            </div>
+                        </div>
 
                     </div>
 
@@ -180,6 +194,6 @@
   </div>
 </div>
 
-
+{{ especieForm.value | json }}
 
 

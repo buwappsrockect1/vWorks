@@ -14,6 +14,10 @@ export class EspecieFormComponent implements OnInit {
   especieForm: FormGroup;
   especie: Especie;
 
+  // to show on delete the only variedad ( needed at least one variedad )
+  bShowDeleteVariedadAlert: boolean ;
+
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private especieService: EspecieService,
@@ -31,7 +35,8 @@ export class EspecieFormComponent implements OnInit {
           nombreComun:              ['' , Validators.required ],
           origen:                   ['' , Validators.required ],
           caracteristicas:          ['' , Validators.required ],
-          imagen:                   ['']
+          imagen:                   [''],
+          deleted:                  [0 , Validators.required ]
 
        });
 
@@ -61,7 +66,7 @@ export class EspecieFormComponent implements OnInit {
                           this.especie.variedad.map( (variedadElem, index) => {
 
                               // calls this method to create a form field
-                              this.addVariedad();
+                              this.addVariedad(variedadElem.id, variedadElem.nombre);
 
                           });
 
@@ -108,17 +113,56 @@ export class EspecieFormComponent implements OnInit {
   }
 
   // adds a new variedad group to the formArray
-  addVariedad( name: string = ''): void {
-    this.variedad.push( this.fb.group({nombre: name}) );
+  addVariedad( id: number = 0, name: string = ''): void {
+
+
+    if ( id > 0 ) {
+      this.variedad.push( this.fb.group( { id: id , nombre: name} ) );
+    } else {
+      this.variedad.push( this.fb.group( { nombre: name} ) );
+    }
+
+    // if there are more than one Variedad ( at least one is neeeded )
+    if ( this.variedad.length > 1 ) {
+      this.bShowDeleteVariedadAlert = false;
+    }
   }
 
   // deletes a variedad from the formArray
   deleteVariedad(index: number) {
-    this.variedad.removeAt(index);
+
+    if ( this.variedad.length > 1 ) {
+
+      this.variedad.removeAt(index);
+
+    } else {
+       // shows the Variedad alert ( at least one Variedad )
+       this.bShowDeleteVariedadAlert = true;
+    }
+
   }
 
 
+
   onSubmit() {
+
+
+    // iterate through the variedades
+    for (let index = 0; index < this.variedad.length; index++) {
+      const element = this.variedad.at(index);
+
+      // get the field value and trim
+      let str = element.get('nombre').value as String;
+      str = str.trim();
+      element.get('nombre').setValue( str );
+
+      if ( str.length === 0 ) {
+        // shows the Variedad alert ( at least one Variedad )
+        this.bShowDeleteVariedadAlert = true;
+        return;
+      }
+
+    }
 
     // if there is a especie to edit
     if (this.especie.id) {
