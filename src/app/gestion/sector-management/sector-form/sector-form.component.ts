@@ -90,8 +90,12 @@ export class SectorFormComponent implements OnInit {
       this.sector = this.sectorForm.value ;
 
       // initializes numLotes and numEspecies of the sector
-      this.sector.numLotes    = 0;
-      this.sector.numEspecies = 0;
+      this.sector.numLotes            = 0;
+      this.sector.numEspecies         = 0;
+      this.sector.fechaUltimoAbonado  = null;
+      this.sector.horaUltimoAbonado   = null;
+      this.sector.fechaUltimoRiego    = null;
+      this.sector.horaUltimoRiego     = null;
 
       // sector to insert
       this.sectorService.insertSector( this.sector )
