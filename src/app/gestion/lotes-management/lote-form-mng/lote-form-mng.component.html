@@ -215,8 +215,9 @@
                 <clr-control-error>Introduzca la Variedad</clr-control-error>
 
             </clr-input-container>
-            
+            {{ variedadForm.value | json }}
         </form>
+       
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="onCancelNuevaVariedad()">Cancelar</button>

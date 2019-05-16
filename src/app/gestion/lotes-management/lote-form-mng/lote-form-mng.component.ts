@@ -131,6 +131,7 @@ export class LoteFormMngComponent implements OnInit {
 
                                       // this is the lote we are working on
                                       this.lote = lote ;
+                                      this.especieIdSelected = lote.IdEspecie;
 
                                       // sets the lote values to the form
                                       this.loteForm.patchValue( lote );
@@ -201,6 +202,7 @@ export class LoteFormMngComponent implements OnInit {
     // if there is a lote to edit
     if ( this.lote && this.lote.id) {
 
+      this.especieIdSelected = this.lote.IdEspecie;
       return this.lote.IdEspecie;
 
     } else {
@@ -394,29 +396,22 @@ export class LoteFormMngComponent implements OnInit {
 
   onInsertNuevaVariedad() {
 
-    if (this.variedadForm.invalid) {
-
-      // mark name control as touched
-      // this.variedadForm.controls['nombre'].markAsTouched();
-
-    } else {
+      console.log( 'IdEspecie: ' + this.especieIdSelected );
+      console.log( this.variedadForm.value );
 
 
-        // Do create variedad logic
-        this.variedadService.insertVariedad(this.especieIdSelected , this.variedadForm.value )
-          .subscribe( (variedad: Variedad) => {
+      // Do create variedad logic
+      this.variedadService.insertVariedad(this.especieIdSelected , this.variedadForm.value )
+        .subscribe( (variedad: Variedad) => {
 
-            // get the variedades of this selected especie ( updated with the new created variedad )
-            this.getVariedad( this.especieIdSelected );
+          // get the variedades of this selected especie ( updated with the new created variedad )
+          this.getVariedad( this.especieIdSelected );
 
-            // close dialog and reset form
-            this.openedNuevaVariedadDialog = false;
-            this.variedadForm.reset();
+          // close dialog and reset form
+          this.openedNuevaVariedadDialog = false;
+          this.variedadForm.reset();
 
-          });
-
-
-    }
+        });
 
 
   }
