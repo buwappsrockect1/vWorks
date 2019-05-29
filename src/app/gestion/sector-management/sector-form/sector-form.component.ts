@@ -29,7 +29,7 @@ export class SectorFormComponent implements OnInit {
       numero:         ['1' , Validators.required ]
     });
 
-    // get the route params to edit a seccion or create a new one
+    // get the route params to edit a sector or create a new one
     this.route.params
       .subscribe( (params: Params) => {
 
@@ -76,7 +76,12 @@ export class SectorFormComponent implements OnInit {
     // if there is a sector to edit
     if (this.sector.id) {
 
-      this.sectorService.updateSector( this.sector.id, this.sectorForm.value)
+      // get sector data from the form
+      this.sector.nombre = this.sectorForm.controls['nombre'].value ;
+      this.sector.numero = this.sectorForm.controls['numero'].value ;
+
+      console.log( this.sector );
+      this.sectorService.updateSector( this.sector.id, this.sector)
         .subscribe( sectores => {
 
             // goes back to the list
