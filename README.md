@@ -1,6 +1,10 @@
-# ViveroWorks0.5.0
+# ViveroWorks5.3.0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+## Inicio Arreglo Especie
+
+Quitar nombre de Especie
+Agregar Colores
+
 
 ## Version 0.5.0 Primera Revision con ingeniero
 
