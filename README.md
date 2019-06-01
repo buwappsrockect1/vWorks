@@ -1,8 +1,9 @@
-# ViveroWorks0.5.0
+# ViveroWorks5.0.0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Antes de Fusionar nada.
+Version 5.0.0 . Gran cambio despues de hablar con Ingeniero
 
-## Version 0.5.0 Primera Revision con ingeniero
+## Version 5.0.0 Primera Revision con ingeniero
 
 
 
