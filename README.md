@@ -1,7 +1,10 @@
-# ViveroWorks5.0.0
+# ViveroWorks5.3.0
 
-Antes de Fusionar nada.
-Version 5.0.0 . Gran cambio despues de hablar con Ingeniero
+## Inicio Arreglo Especie
+
+Quitar nombre de Especie
+Agregar Colores
+
 
 ## Version 5.0.0 Primera Revision con ingeniero
 

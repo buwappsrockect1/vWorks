@@ -1,14 +1,15 @@
 import { Variedad } from './variedad';
+import { Color } from './color';
 
 // definition class of a Especie
 export class Especie {
 
     public id:                      number      ;
-    public nombre:                  string      ;
+    public nombreComun:             string      ;
     public nombreCientifico:        string      ;
     public familia:                 string      ;
     public variedad:                Variedad[]  ;
-    public nombreComun:             string      ;
+    public colores:                 Color[]     ;
     public origen:                  string      ;
     public caracteristicas?:        string      ;
     public imagen?:                 string      ;

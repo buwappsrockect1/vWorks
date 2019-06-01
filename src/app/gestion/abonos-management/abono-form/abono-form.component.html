@@ -23,7 +23,7 @@
                             />
                         <clr-control-error>Introduzca el Nombre</clr-control-error>
                     </clr-input-container>
-
+                    <!--
                     <clr-input-container>
                         <label class="clr-col-12">S&iacute;mbolo</label>
                         <input class="clr-col-12" clrInput type="text" 
@@ -32,7 +32,18 @@
                             />
                         <clr-control-error>Introduzca el S&iacute;mbolo</clr-control-error>
                     </clr-input-container>
-
+                    -->  
+                    <clr-checkbox-container clrInline>
+                            
+                        <clr-checkbox-wrapper>
+                            <input type="checkbox" clrCheckbox 
+                                name="enStock"  
+                                formControlName="enStock"  
+                                value="" />
+                            <label>En Stock</label>
+                        </clr-checkbox-wrapper>
+                        
+                    </clr-checkbox-container>  
                     <clr-input-container>
                         <label class="clr-col-12">Composici&oacute;n</label>
                         <input class="clr-col-12" clrInput type="text" 

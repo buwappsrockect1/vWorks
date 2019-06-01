@@ -26,11 +26,10 @@ export class AbonoFormComponent implements OnInit {
       this.abonoForm = this.fb.group({
         id:                       [''],
         nombre:                   ['' , Validators.required ],
-        simbolo:                  ['' , Validators.required ],
         composicion:              [''],
         otros:                    [''],
-        deleted:                  [0 , Validators.required]
-
+        deleted:                  [0 , Validators.required],
+        enStock:                  [0 , Validators.required]
       });
 
       // get the route params to edit a abono or create a new one
@@ -81,6 +80,18 @@ export class AbonoFormComponent implements OnInit {
 
   onSubmit() {
 
+    // get the value of enStock ( boolean or number value )
+    const enStockValue: any = this.abonoForm.controls['enStock'].value;
+
+    // if it is boolean
+    if ( typeof enStockValue === 'boolean' ) {
+      // convert to number
+      this.abonoForm.controls['enStock'].setValue( ( enStockValue ) ? 1 : 0 );
+    }
+
+
+
+
     // if there is an abono to edit
     if (this.abono.id) {
 
@@ -109,6 +120,7 @@ export class AbonoFormComponent implements OnInit {
     }
 
   }
+
 
   onCancel() {
     this.goBackToList();

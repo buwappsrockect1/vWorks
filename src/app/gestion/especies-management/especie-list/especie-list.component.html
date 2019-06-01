@@ -24,10 +24,10 @@
 
                 <clr-datagrid>
                     <clr-dg-column>Imagen</clr-dg-column>
-                    <clr-dg-column>Nombre</clr-dg-column>
-                    <clr-dg-column>Nombre Cientifico</clr-dg-column>
                     <clr-dg-column>Nombre Comun</clr-dg-column>
+                    <clr-dg-column>Nombre Cientifico</clr-dg-column>
                     <clr-dg-column>Variedades</clr-dg-column>
+                    <clr-dg-column>Colores</clr-dg-column>
                     <clr-dg-column></clr-dg-column>
                 
                     <clr-dg-row *clrDgItems="let especie of especieList">
@@ -47,7 +47,7 @@
                         </clr-dg-cell>
                         <clr-dg-cell>
                             <strong>
-                                {{ especie.nombre }}
+                                {{ especie.nombreComun }}
                             </strong>
                             <!--
                             <clr-signpost>     
@@ -65,12 +65,16 @@
                             </strong>
                         </clr-dg-cell>
                         <clr-dg-cell>
-                            {{ especie.nombreComun }}
-                        </clr-dg-cell>
-                        <clr-dg-cell>
                             <ul class="list">
                                 <li *ngFor="let variedad of especie.variedad">
                                     {{ variedad.nombre }}
+                                </li>
+                            </ul>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <ul class="list">
+                                <li *ngFor="let color of especie.colores">
+                                    {{ color.nombre }}
                                 </li>
                             </ul>
                         </clr-dg-cell>

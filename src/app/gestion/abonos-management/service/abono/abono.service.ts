@@ -20,6 +20,11 @@ export class AbonoService {
   bInsertMode: boolean = false;
 
 
+  // to save the state to return to the abonos filter applied
+  filterAbonos: 'ALL' | 'INSTOCK';
+  selectedLetter: string ;
+
+
 
   constructor() {
 
@@ -44,7 +49,7 @@ export class AbonoService {
   }
 
 
-  getAbonos(): Observable<Abono[]> {
+  getAbonos(queryString?: String): Observable<Abono[]> {
     // return of(this.abonoList);
 
     return new Observable<Abono[]>( (observer) => {
@@ -122,6 +127,31 @@ export class AbonoService {
   getNextId(): number {
     return ++this.count;
   }
+
+
+  // saves the filterAbonos state
+  setFilterAbonos( filter: 'ALL' | 'INSTOCK' ) {
+      this.filterAbonos = filter;
+  }
+
+
+  getFilterAbonos(): any {
+      return this.filterAbonos;
+  }
+
+
+
+  // saves the selected letter state ( to search abonos by that letter -  )
+  // saves the state of that letter to return to abonos starting with that letter
+  // after inserting or editing an Abono
+  setSelectedLetter( letter: string ) {
+    this.selectedLetter = letter;
+  }
+
+  getSelectedLetter(): string {
+      return this.selectedLetter;
+  }
+
 
 
   // Shows or hide the Insert Button or list view buttons on the upper toolbar

@@ -28,11 +28,10 @@ export class EspecieFormComponent implements OnInit {
        // reactive form
        this.especieForm = this.fb.group({
           id:                       [''],
-          nombre:                   ['' , Validators.required ],
+          nombreComun:              ['' , Validators.required ],
           nombreCientifico:         ['' , Validators.required ],
           familia:                  ['' , Validators.required ],
           variedad:                 this.fb.array([]),
-          nombreComun:              ['' , Validators.required ],
           origen:                   ['' , Validators.required ],
           caracteristicas:          ['' , Validators.required ],
           imagen:                   [''],
