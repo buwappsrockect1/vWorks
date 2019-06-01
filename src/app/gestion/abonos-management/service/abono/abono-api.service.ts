@@ -21,15 +21,21 @@ export class AbonoAPIService {
   // Shows or hide the Insert Button or list view buttons on the upper toolbar
   bInsertMode: boolean = false;
 
+  // to save the state to return to the abonos filter applied
+  filterAbonos: 'ALL' | 'INSTOCK';
+  selectedLetter: string ;
+
 
   constructor(private httpClient: HttpClient,
               private globalService: GlobalService) {
   }
 
 
-  getAbonos(): Observable<Abono[]> {
+  // queryString ( ?letter=X ) Asks for starting letter 
+  // queryString ( ?stock=1 ) Asks for  stock  1 -> enStock 
+  getAbonos(queryString?: String): Observable<Abono[]> {
 
-      return this.httpClient.get<Abono[]>(this.dataURL );
+      return this.httpClient.get<Abono[]>(this.dataURL + queryString);
   }
 
 
@@ -73,6 +79,33 @@ export class AbonoAPIService {
 
 
 
+
+
+  // saves the filterAbonos state
+  setFilterAbonos( filter: 'ALL' | 'INSTOCK' ) {
+    this.filterAbonos = filter;
+  }
+
+  getFilterAbonos(): any {
+    return this.filterAbonos;
+  }
+
+
+
+  // saves the selected letter state ( to search abonos by that letter -  )
+  // saves the state of that letter to return to abonos starting with that letter
+  // after inserting or editing an Abono
+  setSelectedLetter( letter: string ) {
+      this.selectedLetter = letter;
+  }
+
+  getSelectedLetter(): string {
+      return this.selectedLetter;
+  }
+
+
+
+
   // Shows or hide the Insert Button or list view buttons on the upper toolbar
   setShowToolBarInsertButtons( insertButtonClicked: boolean ) {
     this.bInsertMode = insertButtonClicked;
@@ -82,4 +115,5 @@ export class AbonoAPIService {
   getShowToolBarInsertButtons(): boolean {
     return this.bInsertMode;
   }
+
 }
